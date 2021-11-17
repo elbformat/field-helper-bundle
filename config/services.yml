@@ -1,0 +1,5 @@
+services:
+    FieldHelperRegistryInterface: '@ibexa_field_helper_registry'
+
+    ibexa_field_helper.registry:
+
