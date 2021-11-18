@@ -1,9 +1,3 @@
-## What are "Field helpers"?
-Field helpers are intended to easily and safely access fields from content objects in a typed manner. 
-With this you can make your project safe for static code analysis without adding too much boilerplate code everywhere.
-Especially for importer scripts, that create content, there is an update method which helps you to track changes.
-With thism, you can speed up the update process by not publishing it, when no change was made at all. 
-
 ## Usage
 The best practice is, to inject the Field Helper Registry into your service. 
 You can then fetch a helper for each field you need.
@@ -55,31 +49,3 @@ In return it will tell you, if there were changes made, or if the content object
 ```php
 $changed = $this->fieldHelpers->getTextFieldelper()->updateString($struct, 'my_field', 'new value', $content);
 ```
-
-## Field Types
-On https://doc.ibexa.co/en/latest/api/field_type_reference/ is a list with different field types. 
-There may not be helpers for all types, so feel free to make a Pull Request.
-Some field types may also have multiple helpers, depending on what you want to extract from it.
-Implemented types are:
-
-| Field Type   | Internal Name | Available Helpers |
-| ------------ | ------------- | --- |
-| Checkbox     | ezboolean     | TODO |
-| DateAndTime  | 	
-| Date         |
-| EmailAddress | ezemail | TextFieldHelper |
-| Float        |
-| Integer      |
-| Matrix       |
-| Relation     |
-| RelationList |
-| RichText     |
-| Selection    |
-| TextBlock    | eztext       | TextFieldHelper |
-| TextLine     | ezstring     | TextFieldHelper |
-| Time         |
-| Url          |
-
-## Advanced topics
-* Learn how to [extend](docs/extension.md) the field helpers
-* 

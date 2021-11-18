@@ -11,7 +11,10 @@ use eZ\Publish\Core\FieldType\EmailAddress\Value as EmailAddressValue;
 use eZ\Publish\Core\FieldType\Float\Value as FloatValue;
 use eZ\Publish\Core\FieldType\TextBlock\Value as TextBlockValue;
 use eZ\Publish\Core\FieldType\TextLine\Value as TextLineValue;
+use eZ\Publish\Core\FieldType\Value;
 use eZ\Publish\Core\Repository\Values\Content\Content;
+use eZ\Publish\Core\Repository\Values\Content\ContentCreateStruct;
+use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,14 +22,15 @@ use PHPUnit\Framework\TestCase;
  */
 class TextFieldHelperTest extends TestCase
 {
-    public function testGetName() {
+    public function testGetName(): void
+    {
         $this->assertSame('Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper', TextFieldHelper::getName());
     }
 
     /**
      * @dataProvider getStringProvider
      */
-    public function testGetString($value, $expectedString)
+    public function testGetString(Value $value, string $expectedString): void
     {
         $fh = new TextFieldHelper();
         $content = $this->createContentFromValue($value);
@@ -36,23 +40,24 @@ class TextFieldHelperTest extends TestCase
     /**
      * @dataProvider getStringProvider
      */
-    public function testGetOptionalString($value, $expectedString)
+    public function testGetOptionalString(Value $value, string $expectedString): void
     {
         $fh = new TextFieldHelper();
         $content = $this->createContentFromValue($value);
         $this->assertSame($expectedString, $fh->getOptionalString($content, 'text_field'));
     }
 
-    public function getStringProvider(): array {
+    public function getStringProvider(): array
+    {
         return [
-            [new TextLineValue('My Text'),'My Text'],
-            [new TextBlockValue('My Text'),'My Text'],
-            [new EmailAddressValue('test@email.de'),'test@email.de'],
-            [new TextLineValue(''),''],
+            [new TextLineValue('My Text'), 'My Text'],
+            [new TextBlockValue('My Text'), 'My Text'],
+            [new EmailAddressValue('test@email.de'), 'test@email.de'],
+            [new TextLineValue(''), ''],
         ];
     }
 
-    public function testGetStringNull()
+    public function testGetStringNull(): void
     {
         $this->expectException(NotSetException::class);
         $fh = new TextFieldHelper();
@@ -60,14 +65,14 @@ class TextFieldHelperTest extends TestCase
         $fh->getString($content, 'text_field');
     }
 
-    public function testGetOptionalStringNull()
+    public function testGetOptionalStringNull(): void
     {
         $fh = new TextFieldHelper();
         $content = $this->createContentFromValue(new TextLineValue(null));
         $this->assertNull($fh->getOptionalString($content, 'text_field'));
     }
 
-    public function testGetStringFieldNotFound()
+    public function testGetStringFieldNotFound(): void
     {
         $this->expectException(FieldNotFoundException::class);
         $fh = new TextFieldHelper();
@@ -75,7 +80,7 @@ class TextFieldHelperTest extends TestCase
         $fh->getString($content, 'not_a_text_field');
     }
 
-    public function testGetStringInvalidFieldType()
+    public function testGetStringInvalidFieldType(): void
     {
         $this->expectException(InvalidFieldTypeException::class);
         $this->expectExceptionMessageMatches('/Expected field type .*TextLine\\\\Value/');
@@ -87,9 +92,36 @@ class TextFieldHelperTest extends TestCase
         $fh->getString($content, 'text_field');
     }
 
-    // @todo test update function
+    public function testUpdateStringCreate(): void
+    {
+        $fh = new TextFieldHelper();
+        $struct = new ContentCreateStruct();
+        $this->assertTrue($fh->updateString($struct, 'text_field', 'My Text'));
+        $this->assertEquals('text_field', $struct->fields[0]->fieldDefIdentifier);
+        $this->assertEquals('My Text', $struct->fields[0]->value);
+    }
 
-    protected function createContentFromValue($value): Content {
+    public function testUpdateStringChanged(): void
+    {
+        $fh = new TextFieldHelper();
+        $struct = new ContentUpdateStruct();
+        $content = $this->createContentFromValue(new TextLineValue('Old Text'));
+        $this->assertTrue($fh->updateString($struct, 'text_field', 'My Text', $content));
+        $this->assertEquals('text_field', $struct->fields[0]->fieldDefIdentifier);
+        $this->assertEquals('My Text', $struct->fields[0]->value);
+    }
+
+    public function testUpdateStringUnchanged(): void
+    {
+        $fh = new TextFieldHelper();
+        $struct = new ContentUpdateStruct();
+        $content = $this->createContentFromValue(new TextLineValue('My Text'));
+        $this->assertFalse($fh->updateString($struct, 'text_field', 'My Text', $content));
+        $this->assertCount(0, $struct->fields);
+    }
+
+    protected function createContentFromValue(Value $value): Content
+    {
         $field = new Field(['value' => $value]);
 
         $content = $this->createMock(Content::class);

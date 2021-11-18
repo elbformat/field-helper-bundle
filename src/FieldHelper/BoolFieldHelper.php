@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\FieldHelper;
 
+use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
 use eZ\Publish\API\Repository\Values\Content\Field;
+use eZ\Publish\Core\FieldType\Checkbox\Value as CheckboxValue;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
@@ -24,7 +26,7 @@ class BoolFieldHelper extends AbstractFieldHelper
         return $this->getBooleanFieldValue($field);
     }
 
-    public function updateBoolean(ContentStruct $struct, string $fieldName, ?bool $value, ?Content $content): bool
+    public function updateBoolean(ContentStruct $struct, string $fieldName, ?bool $value, ?Content $content = null): bool
     {
         // No changes
         if (null !== $content) {
@@ -47,6 +49,10 @@ class BoolFieldHelper extends AbstractFieldHelper
 
     protected function getBooleanFieldValue(Field $field): ?bool
     {
+        if (CheckboxValue::class !== \get_class($field->value)) {
+            throw InvalidFieldTypeException::fromActualAndExpected($field->value, CheckboxValue::class);
+        }
+
         return $field->value->bool;
     }
 }

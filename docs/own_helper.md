@@ -1,5 +1,3 @@
-Extend the field helpers
-
 ## Create your own field helper
 It's quite easy to create an own field helper for your project. 
 You just need to implement the FieldHelperInterface by exposing the name of the field helper. 
@@ -23,17 +21,4 @@ Afterwards you can simple fetch it via the registry
 $myFieldHelper = $fieldHelperRegistry->getFieldHelper(App\MyFieldHelper::class);
 ```
 
-## Extend an existing field helper
-Field helpers are of course extensible in symfony style, by decorating the according service. 
-If you do not override the `getName()` method, it will still be available under the old name but with your overridden implementation
-```php
-class BetterTextFieldHelper extends AbstractFieldHelper
-{
-    ...
-}
-```
-```yml
-services
-    App\BetterTextFieldHelper:
-        decorates: 'elbformat_field_helper.field_helper.text'
-```
+Don't forget to create a Pull Request, when you wrote a helper, that could be useful for others, too!

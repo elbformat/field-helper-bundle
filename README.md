@@ -1,44 +1,33 @@
-# ibexa-field-helper-bundle
-This bundle provides helpers to extract and set structured data from and to ibexa content fields
+# Elbformat Field Helper Bundle for ibexa DXP
+This bundle provides helpers to extract and set structured data from and to ibexa content fields.
 
-Installation
-============
+What are "Field helpers"?
+=========================
+Field helpers are intended to easily and safely access fields from content objects in a typed manner.
+With this you can make your project safe for static code analysis without adding too much boilerplate code everywhere.
+Especially for importer scripts, that create content, there is an update method which helps you to track changes.
+With thism, you can speed up the update process by not publishing it, when no change was made at all.
 
-Make sure Composer is installed globally, as explained in the
-[installation chapter](https://getcomposer.org/doc/00-intro.md)
-of the Composer documentation.
-
-Applications that use Symfony Flex
-----------------------------------
-
-Open a command console, enter your project directory and execute:
-
+Quick usage
+===========
+Install bundle via composer
 ```console
-$ composer require elbformat/ibexa-field-helper-bundle
+$ composer require elbformat/field-helper-bundle
 ```
-
-Applications that don't use Symfony Flex
-----------------------------------------
-
-### Step 1: Download the Bundle
-
-Open a command console, enter your project directory and execute the
-following command to download the latest stable version of this bundle:
-
-```console
-$ composer require elbformat/ibexa-field-helper-bundle
-```
-
-### Step 2: Enable the Bundle
-
-Then, enable the bundle by adding it to the list of registered bundles
-in the `config/bundles.php` file of your project:
-
+Use like this
 ```php
-// config/bundles.php
-
-return [
-    // ...
-    Elbformat\IbexaFieldHelperBundle\ElbformatFieldHelperBundle::class => ['all' => true],
-];
+public function getFields(RegistryInterface $fieldHelperRegistry, Content $content) {
+    $myText = $fieldHelperRegistry->getTextFieldHelper()->getString($content, 'text_field');
+    $linkObject = $fieldHelperRegistry->getLinkFieldHelper()->getLink($content, 'my_url');
+    $linkUrl = $linkObj->getUrl();
+    $linkText = $linkObj->getText();
+}
 ```
+
+Further topics
+==============
+* [Installation](docs/installation.md)
+* [How to use the field helpers](docs/usage.md)
+* [List of supported fields and their helpers](docs/fields.md)
+* [Extending existing helpers](docs/extending.md)
+* [Writing your own helpers](docs/own_helper.md)
