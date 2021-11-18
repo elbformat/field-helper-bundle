@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\Registry;
 
 use Elbformat\FieldHelperBundle\Exception\UnknownHelperException;
+use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use ProxyManager\Proxy\VirtualProxyInterface;
@@ -41,11 +42,9 @@ class Registry implements RegistryInterface
         return $this->accountFieldHelper;
     }
 
-    public function getBooleanFieldHelper(): BooleanFieldHelper
+    public function getBoolFieldHelper(): BoolFieldHelper
     {
-        $this->resolveProxy('booleanFieldHelper');
-
-        return $this->booleanFieldHelper;
+        return $this->getFieldHelper(BoolFieldHelper::class);
     }
 
     public function getDateFieldHelper(): DateFieldHelper
