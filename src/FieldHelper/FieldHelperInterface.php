@@ -7,7 +7,7 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
  *
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */
-class FieldHelperInterface
+interface FieldHelperInterface
 {
-
+    public static function getName(): string;
 }

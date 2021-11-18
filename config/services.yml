@@ -1,7 +1,11 @@
 services:
-    Elbformat\IbexaFieldHelperBundle\Registry\RegistryInterface: '@elbformat_ibexa_field_helper.registry'
+    Elbformat\FieldHelperBundle\Registry\RegistryInterface: '@elbformat_field_helper.registry'
 
-    elbformat_ibexa_field_helper.registry:
-        class: Elbformat\IbexaFieldHelperBundle\Registry\Registry
+    elbformat_field_helper.registry:
+        class: Elbformat\FieldHelperBundle\Registry\Registry
         arguments:
             $helper: []
+
+    elbformat_field_helper.field_helper.text:
+        class: Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper
+        tags: ['elbformat_field_helper.field_helper']

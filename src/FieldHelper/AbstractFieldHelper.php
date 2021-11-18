@@ -5,12 +5,12 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Field;
-use FieldHelperBundle\Exception\FieldNotFoundException;
+use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */
-abstract class AbstractFieldHelper extends FieldHelperInterface
+abstract class AbstractFieldHelper implements FieldHelperInterface
 {
     /**
      * @throws FieldNotFoundException

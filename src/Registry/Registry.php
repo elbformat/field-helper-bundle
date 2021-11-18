@@ -27,7 +27,7 @@ class Registry implements RegistryInterface
     public function getFieldHelper(string $class): FieldHelperInterface
     {
         if (!isset($this->helper[$class])) {
-            throw new UnknownHelperException($class,array_keys($this->helper));
+            throw UnknownHelperException::fromClassName($class,array_keys($this->helper));
         }
         return $this->helper[$class];
     }

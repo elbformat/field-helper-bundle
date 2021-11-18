@@ -10,13 +10,17 @@ use eZ\Publish\Core\FieldType\EmailAddress\Value as MailValue;
 use Elbformat\FieldHelperBundle\Exception\NotSetException;
 
 /**
- * Helps reading, updating and comparing text field types.
- * https://doc.ezplatform.com/en/latest/api/field_type_reference.
+ * Handles ezstring,eztext and ezemail
  *
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */
 class TextFieldHelper extends AbstractFieldHelper
 {
+    public static function getName(): string
+    {
+        return self::class;
+    }
+
     public function getString(Content $content, string $fieldName): string
     {
         $value = $this->getOptionalString($content,$fieldName);
