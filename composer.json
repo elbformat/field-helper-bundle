@@ -1,5 +1,5 @@
 {
-  "name": "elbformat/ibexa-field-helper-bundle",
+  "name": "elbformat/field-helper-bundle",
   "description": "Provides helpers to extract and set structured data from and to ibexa content fields",
   "type": "symfony-bundle",
   "license": "MIT",
@@ -16,12 +16,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "Elbformat\\IbexaFieldHelperBundle\\": "src/"
+      "Elbformat\\FieldHelperBundle\\": "src/"
     }
   },
   "autoload-dev": {
     "psr-4": {
-      "Elbformat\\IbexaFieldHelperBundle\\Tests\\": "tests/"
+      "Elbformat\\FieldHelperBundle\\Tests\\": "tests/"
     }
   }
 }
