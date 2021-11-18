@@ -1,8 +1,8 @@
 <?php
 
-namespace Elbformat\IbexaFieldHelperBundle\Registry;
+namespace Elbformat\FieldHelperBundle\Registry;
 
-use Elbformat\IbexaFieldHelperBundle\FieldHelper\FieldHelperInterface;
+use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 
 interface RegistryInterface
 {

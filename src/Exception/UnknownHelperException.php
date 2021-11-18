@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Elbformat\IbexaFieldHelperBundle\Exception;
+namespace Elbformat\FieldHelperBundle\Exception;
 
 /**
  * Thrown, when a helper was requested that does not exist.

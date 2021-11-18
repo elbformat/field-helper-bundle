@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace Elbformat\IbexaFieldHelperBundle\Registry;
+namespace Elbformat\FieldHelperBundle\Registry;
 
-use Elbformat\IbexaFieldHelperBundle\Exception\UnknownHelperException;
-use Elbformat\IbexaFieldHelperBundle\FieldHelper\FieldHelperInterface;
-use Elbformat\IbexaFieldHelperBundle\FieldHelper\TextFieldHelper;
+use Elbformat\FieldHelperBundle\Exception\UnknownHelperException;
+use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
+use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use ProxyManager\Proxy\VirtualProxyInterface;
 
 /**

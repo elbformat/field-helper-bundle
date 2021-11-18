@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Elbformat\IbexaFieldHelperBundle\DependencyInjection;
+namespace Elbformat\FieldHelperBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -11,7 +11,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */
-class IbexaFieldHelperBundleExtension extends Extension
+class ElbformatFieldHelperExtension extends Extension
 {
     public function load(array $configs, ContainerBuilder $container): void
     {

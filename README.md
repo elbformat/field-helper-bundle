@@ -39,6 +39,6 @@ in the `config/bundles.php` file of your project:
 
 return [
     // ...
-    Elbformat\IbexaFieldHelperBundle\IbexaFieldHelperBundle::class => ['all' => true],
+    Elbformat\IbexaFieldHelperBundle\ElbformatFieldHelperBundle::class => ['all' => true],
 ];
 ```

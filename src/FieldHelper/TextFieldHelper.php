@@ -1,13 +1,13 @@
 <?php
 declare(strict_types=1);
 
-namespace Elbformat\IbexaFieldHelperBundle\FieldHelper;
+namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\EmailAddress\Value as MailValue;
-use Elbformat\IbexaFieldHelperBundle\Exception\NotSetException;
+use Elbformat\FieldHelperBundle\Exception\NotSetException;
 
 /**
  * Helps reading, updating and comparing text field types.

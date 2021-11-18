@@ -1,11 +1,11 @@
 <?php
 declare(strict_types=1);
 
-namespace IbexaFieldHelperBundle\FieldHelper;
+namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Field;
-use IbexaFieldHelperBundle\Exception\FieldNotFoundException;
+use FieldHelperBundle\Exception\FieldNotFoundException;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>

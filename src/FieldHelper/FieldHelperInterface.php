@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace IbexaFieldHelperBundle\FieldHelper;
+namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 /**
  * FieldHelpers are different by nature and thus have no common accessors.
