@@ -36,7 +36,7 @@ class DateTimeFieldHelper extends AbstractFieldHelper
         return $this->getDateTimeFieldValue($field);
     }
 
-    public function updateDateTime(ContentStruct $struct, string $fieldName, DateTimeInterface $value, ?Content $content=null): bool
+    public function updateDateTime(ContentStruct $struct, string $fieldName, DateTimeInterface $value, ?Content $content = null): bool
     {
         // No changes
         if (null !== $content) {
@@ -47,8 +47,9 @@ class DateTimeFieldHelper extends AbstractFieldHelper
         }
         // Downgrade to \DateTime
         if ($value instanceof DateTimeImmutable) {
-            $value = new DateTime(null,$value->getTimezone());
-            $value->setTimestamp($value->getTimestamp());
+            $newVal = new DateTime('@' . $value->getTimestamp());
+            $newVal->setTimezone($value->getTimezone());
+            $value = $newVal;
         }
 
         $struct->setField($fieldName, $value);

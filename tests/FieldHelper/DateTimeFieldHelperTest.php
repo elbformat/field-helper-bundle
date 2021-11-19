@@ -98,14 +98,23 @@ class DateTimeFieldHelperTest extends TestCase
         $this->assertEquals('2021-11-11', $struct->fields[0]->value->format('Y-m-d'));
     }
 
-    public function testUpdateDateTimeChanged(): void
+    /** @dataProvider updateDateTimeChangedProvider */
+    public function testUpdateDateTimeChanged(Value $existingValue, \DateTimeInterface $newDate): void
     {
         $fh = new DateTimeFieldHelper();
         $struct = new ContentUpdateStruct();
-        $content = $this->createContentFromValue(new DateValue(new \DateTime('2021-11-12')));
-        $this->assertTrue($fh->updateDateTime($struct, 'date_field', new \DateTime('2021-11-11'), $content));
+        $content = $this->createContentFromValue($existingValue);
+        $this->assertTrue($fh->updateDateTime($struct, 'date_field', $newDate, $content));
         $this->assertEquals('date_field', $struct->fields[0]->fieldDefIdentifier);
-        $this->assertEquals('2021-11-11', $struct->fields[0]->value->format('Y-m-d'));
+        $this->assertEquals($newDate->format('Y-m-d H:i:s'), $struct->fields[0]->value->format('Y-m-d H:i:s'));
+    }
+
+    public function updateDateTimeChangedProvider(): array {
+        return [
+            [new DateValue(new \DateTime('2021-11-12')), new \DateTime('2021-11-11')],
+            [new DateTimeValue(new \DateTime('2021-11-12')), new \DateTimeImmutable('2021-11-11')],
+            [new TimeValue(11), new \DateTimeImmutable('2021-11-11 00:00:12')],
+        ];
     }
 
     public function testUpdateDateTimeUnchanged(): void
@@ -115,6 +124,14 @@ class DateTimeFieldHelperTest extends TestCase
         $content = $this->createContentFromValue(new DateValue(new \DateTime('2021-11-11')));
         $this->assertFalse($fh->updateDateTime($struct, 'date_field', new \DateTimeImmutable('2021-11-11'), $content));
         $this->assertCount(0, $struct->fields);
+    }
+
+    public function updateDateTimeUnchangedProvider(): array {
+        return [
+            [new DateValue(new \DateTime('2021-11-12')), new \DateTime('2021-11-11')],
+            [new DateTimeValue(new \DateTime('2021-11-12')), new \DateTimeImmutable('2021-11-11')],
+            [new TimeValue(11), new \DateTimeImmutable('2021-11-11 00:00:12')],
+        ];
     }
 
     protected function createContentFromValue(Value $value): Content
