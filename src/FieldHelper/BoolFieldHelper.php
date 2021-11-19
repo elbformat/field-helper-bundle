@@ -19,14 +19,14 @@ class BoolFieldHelper extends AbstractFieldHelper
         return self::class;
     }
 
-    public function getBoolean(Content $content, string $fieldName): ?bool
+    public function getBool(Content $content, string $fieldName): ?bool
     {
         $field = $this->getField($content, $fieldName);
 
         return $this->getBooleanFieldValue($field);
     }
 
-    public function updateBoolean(ContentStruct $struct, string $fieldName, ?bool $value, ?Content $content = null): bool
+    public function updateBool(ContentStruct $struct, string $fieldName, ?bool $value, ?Content $content = null): bool
     {
         // No changes
         if (null !== $content) {

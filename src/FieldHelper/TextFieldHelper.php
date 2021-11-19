@@ -8,9 +8,8 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\EmailAddress\Value as MailValue;
-use eZ\Publish\Core\FieldType\TextLine\Value as TextLineValue;
 use eZ\Publish\Core\FieldType\TextBlock\Value as TextBlockValue;
-use Elbformat\FieldHelperBundle\Exception\NotSetException;
+use eZ\Publish\Core\FieldType\TextLine\Value as TextLineValue;
 
 /**
  * Handles ezstring,eztext and ezemail
@@ -24,18 +23,7 @@ class TextFieldHelper extends AbstractFieldHelper
         return self::class;
     }
 
-    public function getString(Content $content, string $fieldName): string
-    {
-        $value = $this->getOptionalString($content, $fieldName);
-
-        if (null === $value) {
-            throw NotSetException::fromContentAndFieldName($content, $fieldName);
-        }
-
-        return $value;
-    }
-
-    public function getOptionalString(Content $content, string $fieldName, bool $exceptionOnEmpty = false): ?string
+    public function getString(Content $content, string $fieldName): ?string
     {
         $field = $this->getField($content, $fieldName);
 

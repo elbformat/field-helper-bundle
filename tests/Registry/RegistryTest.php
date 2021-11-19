@@ -2,7 +2,7 @@
 
 namespace Elbformat\FieldHelperBundle\Tests\Registry;
 
-use Elbformat\FieldHelperBundle\Exception\UnknownHelperException;
+use Elbformat\FieldHelperBundle\Exception\UnknownFieldHelperException;
 use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\Registry\Registry;
@@ -40,7 +40,7 @@ class RegistryTest extends TestCase
 
     public function testGetFieldHelperUnknown()
     {
-        $this->expectException(UnknownHelperException::class);
+        $this->expectException(UnknownFieldHelperException::class);
         $this->expectExceptionMessageMatches('/Unknown FieldHelper: .*TextFieldHelper/');
         $this->expectExceptionMessageMatches('/Valid helpers are:.*BoolFieldHelper/s');
         $helpers = [

@@ -8,7 +8,7 @@ namespace Elbformat\FieldHelperBundle\Exception;
  *
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */
-class UnknownHelperException extends \InvalidArgumentException
+class UnknownFieldHelperException extends \InvalidArgumentException
 {
     /** @param array<int,string> $validClasses */
     public static function fromClassName(string $className, array $validClasses): self

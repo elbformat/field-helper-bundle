@@ -5,8 +5,8 @@ Some field types may also have multiple helpers, depending on what you want to e
 Implemented types are:
 
 | Field Type   | Internal Name | Available Helpers |
-| ------------ | ------------- | --- |
-| Checkbox     | ezboolean     | TODO |
+| ------------ | ------------- | ---               |
+| Checkbox     | ezboolean     | BoolFieldHelper   |
 | DateAndTime  | 	
 | Date         |
 | EmailAddress | ezemail | TextFieldHelper |

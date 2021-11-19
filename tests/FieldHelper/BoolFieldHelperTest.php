@@ -27,21 +27,21 @@ class BoolFieldHelperTest extends TestCase
     {
         $fh = new BoolFieldHelper();
         $content = $this->createContentFromBool(true);
-        $this->assertTrue($fh->getBoolean($content, 'bool_field'));
+        $this->assertTrue($fh->getBool($content, 'bool_field'));
     }
 
     public function testGetBoolFalse(): void
     {
         $fh = new BoolFieldHelper();
         $content = $this->createContentFromBool(false);
-        $this->assertFalse($fh->getBoolean($content, 'bool_field'));
+        $this->assertFalse($fh->getBool($content, 'bool_field'));
     }
 
     public function testGetBoolNull(): void
     {
         $fh = new BoolFieldHelper();
         $content = $this->createContentFromBool(null);
-        $this->assertNull($fh->getBoolean($content, 'bool_field'));
+        $this->assertNull($fh->getBool($content, 'bool_field'));
     }
 
     public function testGetBoolFieldNotFound(): void
@@ -49,7 +49,7 @@ class BoolFieldHelperTest extends TestCase
         $this->expectException(FieldNotFoundException::class);
         $fh = new BoolFieldHelper();
         $content = $this->createMock(Content::class);
-        $fh->getBoolean($content, 'not_a_bool_field');
+        $fh->getBool($content, 'not_a_bool_field');
     }
 
     public function testGetBoolInvalidFieldType(): void
@@ -61,14 +61,14 @@ class BoolFieldHelperTest extends TestCase
         $field = new Field(['value' => new FloatValue(1.0)]);
         $content = $this->createMock(Content::class);
         $content->method('getField')->with('bool_field')->willReturn($field);
-        $fh->getBoolean($content, 'bool_field');
+        $fh->getBool($content, 'bool_field');
     }
 
     public function testUpdateBoolCreate(): void
     {
         $fh = new BoolFieldHelper();
         $struct = new ContentCreateStruct();
-        $this->assertTrue($fh->updateBoolean($struct, 'bool_field', true));
+        $this->assertTrue($fh->updateBool($struct, 'bool_field', true));
         $this->assertEquals('bool_field', $struct->fields[0]->fieldDefIdentifier);
         $this->assertTrue($struct->fields[0]->value);
     }
@@ -78,7 +78,7 @@ class BoolFieldHelperTest extends TestCase
         $fh = new BoolFieldHelper();
         $struct = new ContentUpdateStruct();
         $content = $this->createContentFromBool(true);
-        $this->assertTrue($fh->updateBoolean($struct, 'bool_field', false, $content));
+        $this->assertTrue($fh->updateBool($struct, 'bool_field', false, $content));
         $this->assertEquals('bool_field', $struct->fields[0]->fieldDefIdentifier);
         $this->assertFalse($struct->fields[0]->value);
     }
@@ -88,7 +88,7 @@ class BoolFieldHelperTest extends TestCase
         $fh = new BoolFieldHelper();
         $struct = new ContentUpdateStruct();
         $content = $this->createContentFromBool(true);
-        $this->assertFalse($fh->updateBoolean($struct, 'bool_field', true, $content));
+        $this->assertFalse($fh->updateBool($struct, 'bool_field', true, $content));
         $this->assertCount(0, $struct->fields);
     }
 

@@ -30,21 +30,11 @@ class TextFieldHelperTest extends TestCase
     /**
      * @dataProvider getStringProvider
      */
-    public function testGetString(Value $value, string $expectedString): void
+    public function testGetString(Value $value, ?string $expectedString): void
     {
         $fh = new TextFieldHelper();
         $content = $this->createContentFromValue($value);
         $this->assertSame($expectedString, $fh->getString($content, 'text_field'));
-    }
-
-    /**
-     * @dataProvider getStringProvider
-     */
-    public function testGetOptionalString(Value $value, string $expectedString): void
-    {
-        $fh = new TextFieldHelper();
-        $content = $this->createContentFromValue($value);
-        $this->assertSame($expectedString, $fh->getOptionalString($content, 'text_field'));
     }
 
     public function getStringProvider(): array
@@ -54,22 +44,8 @@ class TextFieldHelperTest extends TestCase
             [new TextBlockValue('My Text'), 'My Text'],
             [new EmailAddressValue('test@email.de'), 'test@email.de'],
             [new TextLineValue(''), ''],
+            [new TextLineValue(null), null],
         ];
-    }
-
-    public function testGetStringNull(): void
-    {
-        $this->expectException(NotSetException::class);
-        $fh = new TextFieldHelper();
-        $content = $this->createContentFromValue(new TextLineValue(null));
-        $fh->getString($content, 'text_field');
-    }
-
-    public function testGetOptionalStringNull(): void
-    {
-        $fh = new TextFieldHelper();
-        $content = $this->createContentFromValue(new TextLineValue(null));
-        $this->assertNull($fh->getOptionalString($content, 'text_field'));
     }
 
     public function testGetStringFieldNotFound(): void

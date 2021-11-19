@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Registry;
 
-use Elbformat\FieldHelperBundle\Exception\UnknownHelperException;
+use Elbformat\FieldHelperBundle\Exception\UnknownFieldHelperException;
 use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 
@@ -27,7 +28,7 @@ class Registry implements RegistryInterface
     public function getFieldHelper(string $class): FieldHelperInterface
     {
         if (!isset($this->helper[$class])) {
-            throw UnknownHelperException::fromClassName($class,array_keys($this->helper));
+            throw UnknownFieldHelperException::fromClassName($class,array_keys($this->helper));
         }
         return $this->helper[$class];
     }
@@ -37,6 +38,11 @@ class Registry implements RegistryInterface
     public function getBoolFieldHelper(): BoolFieldHelper
     {
         return $this->getFieldHelper(BoolFieldHelper::class);
+    }
+
+    public function getDateTimeFieldHelper(): DateTimeFieldHelper
+    {
+        return $this->getFieldHelper(DateTimeFieldHelper::class);
     }
 
     public function getTextFieldHelper(): TextFieldHelper
