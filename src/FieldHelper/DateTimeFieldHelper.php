@@ -36,7 +36,7 @@ class DateTimeFieldHelper extends AbstractFieldHelper
         return $this->getDateTimeFieldValue($field);
     }
 
-    public function updateDateTime(ContentStruct $struct, string $fieldName, DateTimeInterface $value, ?Content $content = null): bool
+    public function updateDateTime(ContentStruct $struct, string $fieldName, ?DateTimeInterface $value, ?Content $content = null): bool
     {
         // No changes
         if (null !== $content) {
@@ -60,16 +60,28 @@ class DateTimeFieldHelper extends AbstractFieldHelper
     protected function isDateTimeEqual(Field $field, ?DateTimeInterface $value): bool
     {
         $fieldVal = $this->getDateTimeFieldValue($field);
+
         // Null matches null
         if (null === $fieldVal) {
             return null === $value;
         }
+
         // Not null set but null given
         if (null === $value) {
             return false;
         }
 
-        return $fieldVal->getTimestamp() === $value->getTimestamp();
+        $compareDate = in_array(\get_class($field->value), [DateValue::class, DateTimeValue::class], true);
+        if ($compareDate && $fieldVal->format('Y-m-d') !== $value->format('Y-m-d')) {
+            return false;
+        }
+
+        $compareTime = in_array(\get_class($field->value), [TimeValue::class, DateTimeValue::class], true);
+        if ($compareTime && $fieldVal->format('H:i:s') !== $value->format('H:i:s')) {
+            return false;
+        }
+
+        return true;
     }
 
     protected function getDateTimeFieldValue(Field $field): ?DateTime
@@ -89,12 +101,8 @@ class DateTimeFieldHelper extends AbstractFieldHelper
                 $t->setTimestamp($field->value->time);
                 $t->setTimezone(new \DateTimeZone('UTC'));
 
-                try {
-                    // return object with correct time and timezone
-                    return new \DateTime($t->format('H:i:s'));
-                } catch (\Exception $e) {
-                    return null;
-                }
+                // return object with correct time and timezone
+                return new \DateTime($t->format('H:i:s'));
             default:
                 $allowed = [DateValue::class, DateTimeValue::class, TimeValue::class];
                 throw InvalidFieldTypeException::fromActualAndExpected($field->value, $allowed);

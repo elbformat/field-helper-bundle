@@ -99,38 +99,46 @@ class DateTimeFieldHelperTest extends TestCase
     }
 
     /** @dataProvider updateDateTimeChangedProvider */
-    public function testUpdateDateTimeChanged(Value $existingValue, \DateTimeInterface $newDate): void
+    public function testUpdateDateTimeChanged(Value $existingValue, ?\DateTimeInterface $newDate): void
     {
         $fh = new DateTimeFieldHelper();
         $struct = new ContentUpdateStruct();
         $content = $this->createContentFromValue($existingValue);
         $this->assertTrue($fh->updateDateTime($struct, 'date_field', $newDate, $content));
         $this->assertEquals('date_field', $struct->fields[0]->fieldDefIdentifier);
-        $this->assertEquals($newDate->format('Y-m-d H:i:s'), $struct->fields[0]->value->format('Y-m-d H:i:s'));
+        $this->assertEquals(null === $newDate ? null : $newDate->format('Y-m-d H:i:s'), null === $struct->fields[0]->value ? null : $struct->fields[0]->value->format('Y-m-d H:i:s'));
     }
 
-    public function updateDateTimeChangedProvider(): array {
+    public function updateDateTimeChangedProvider(): array
+    {
         return [
             [new DateValue(new \DateTime('2021-11-12')), new \DateTime('2021-11-11')],
             [new DateTimeValue(new \DateTime('2021-11-12')), new \DateTimeImmutable('2021-11-11')],
             [new TimeValue(11), new \DateTimeImmutable('2021-11-11 00:00:12')],
+            [new DateValue(null), new \DateTimeImmutable('2021-11-11 00:00:12')],
+            [new DateValue(new \DateTime('2021-11-12')), null],
         ];
     }
 
-    public function testUpdateDateTimeUnchanged(): void
+    /** @dataProvider updateDateTimeUnchangedProvider */
+    public function testUpdateDateTimeUnchanged(Value $existingValue, \DateTimeInterface $newDate): void
     {
         $fh = new DateTimeFieldHelper();
         $struct = new ContentUpdateStruct();
-        $content = $this->createContentFromValue(new DateValue(new \DateTime('2021-11-11')));
-        $this->assertFalse($fh->updateDateTime($struct, 'date_field', new \DateTimeImmutable('2021-11-11'), $content));
+        $content = $this->createContentFromValue($existingValue);
+        $this->assertFalse($fh->updateDateTime($struct, 'date_field', $newDate, $content));
         $this->assertCount(0, $struct->fields);
     }
 
-    public function updateDateTimeUnchangedProvider(): array {
+    public function updateDateTimeUnchangedProvider(): array
+    {
         return [
-            [new DateValue(new \DateTime('2021-11-12')), new \DateTime('2021-11-11')],
-            [new DateTimeValue(new \DateTime('2021-11-12')), new \DateTimeImmutable('2021-11-11')],
-            [new TimeValue(11), new \DateTimeImmutable('2021-11-11 00:00:12')],
+            [new DateValue(new \DateTime('2021-11-11 11:00')), new \DateTime('2021-11-11 12:12')],
+            [new DateValue(new \DateTime('2021-11-11 11:00')), new \DateTimeImmutable('2021-11-11 12:12')],
+            [new DateTimeValue(new \DateTime('2021-11-11 11:11:11')), new \DateTime('2021-11-11 11:11:11')],
+            [new DateTimeValue(new \DateTime('2021-11-11 11:11:11')), new \DateTimeImmutable('2021-11-11 11:11:11')],
+            [new TimeValue(11), new \DateTime('2021-11-11 00:00:11')],
+            [new TimeValue(1636588811), new \DateTimeImmutable('2021-11-11 00:00:11')],
         ];
     }
 
