@@ -29,12 +29,12 @@
         </whitelist>
     </filter>
     <logging>
-        <log type="coverage-html" target="coverage/html" lowUpperBound="35"
+        <log type="coverage-html" target="build/coverage/html" lowUpperBound="35"
              highLowerBound="70"/>
-<!--        <log type="coverage-clover" target="/tmp/coverage.xml"/>-->
+        <log type="coverage-clover" target="build/clover.xml"/>
 <!--        <log type="coverage-php" target="/tmp/coverage.serialized"/>-->
 <!--        <log type="coverage-text" target="php://stdout" showUncoveredFiles="false"/>-->
-<!--        <log type="junit" target="/tmp/logfile.xml"/>-->
+        <log type="junit" target="build/junit.xml"/>
 <!--        <log type="testdox-html" target="/tmp/testdox.html"/>-->
 <!--        <log type="testdox-text" target="/tmp/testdox.txt"/>-->
     </logging>

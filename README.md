@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/elbformat/field-helper-bundle/tree/main.svg?style=svg)](https://circleci.com/gh/elbformat/field-helper-bundle/tree/main)
+[![License Badge](https://img.shields.io/github/license/datengaertnerei/test-data-service.svg)](https://mit-license.org/)
+
 # Elbformat Field Helper Bundle for ibexa DXP
 This bundle provides helpers to extract and set structured data from and to ibexa content fields.
 
