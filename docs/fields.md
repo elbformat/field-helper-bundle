@@ -4,12 +4,12 @@ There may not be helpers for all types, so feel free to make a Pull Request.
 Some field types may also have multiple helpers, depending on what you want to extract from it.
 Implemented types are:
 
-| Field Type   | Internal Name | Available Helpers |
-| ------------ | ------------- | ---               |
-| Checkbox     | ezboolean     | BoolFieldHelper   |
-| DateAndTime  | 	
-| Date         |
-| EmailAddress | ezemail | TextFieldHelper |
+| Field Type   | Internal Name | Available Helpers   |
+| ------------ | ------------- | ------------------- |
+| Checkbox     | ezboolean     | BoolFieldHelper     |
+| DateAndTime  | ezdatetime	   | DateTimeFieldHelper |
+| Date         | ezdate        | DateTimeFieldHelper |
+| EmailAddress | ezemail       | TextFieldHelper     |
 | Float        |
 | Integer      |
 | Matrix       |
@@ -17,7 +17,7 @@ Implemented types are:
 | RelationList |
 | RichText     |
 | Selection    |
-| TextBlock    | eztext       | TextFieldHelper |
-| TextLine     | ezstring     | TextFieldHelper |
-| Time         |
+| TextBlock    | eztext       | TextFieldHelper     |
+| TextLine     | ezstring     | TextFieldHelper     |
+| Time         | eztime       | DateTimeFieldHelper |
 | Url          |
