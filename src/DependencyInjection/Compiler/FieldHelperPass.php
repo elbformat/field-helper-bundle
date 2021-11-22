@@ -21,10 +21,11 @@ class FieldHelperPass implements CompilerPassInterface
         $definition = $container->findDefinition('elbformat_field_helper.registry');
 
         // find all tagged services
+        /** @var array<string,string[]> $taggedServices */
         $taggedServices = $container->findTaggedServiceIds('elbformat_field_helper.field_helper');
 
         $helpers = [];
-        foreach ($taggedServices as $id => $tags) {
+        foreach (array_keys($taggedServices) as $id) {
             $class = $container->findDefinition($id)->getClass();
             if (!$class instanceof FieldHelperInterface) {
                 continue;

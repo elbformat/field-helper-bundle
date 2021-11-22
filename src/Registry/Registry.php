@@ -18,9 +18,10 @@ use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
  */
 class Registry implements RegistryInterface
 {
-    /** @var array <string,FieldHelperInterface> */
+    /** @var array<string,FieldHelperInterface> */
     protected $helper = [];
 
+    /** @param array<string,FieldHelperInterface> $helper */
     public function __construct(array $helper)
     {
         $this->helper = $helper;
@@ -31,6 +32,7 @@ class Registry implements RegistryInterface
         if (!isset($this->helper[$class])) {
             throw UnknownFieldHelperException::fromClassName($class, array_keys($this->helper));
         }
+
         return $this->helper[$class];
     }
 
@@ -38,21 +40,41 @@ class Registry implements RegistryInterface
 
     public function getBoolFieldHelper(): BoolFieldHelper
     {
-        return $this->getFieldHelper(BoolFieldHelper::class);
+        $fh = $this->getFieldHelper(BoolFieldHelper::class);
+        if (!$fh instanceof BoolFieldHelper) {
+            throw UnknownFieldHelperException::fromClassName(BoolFieldHelper::class, []);
+        }
+
+        return $fh;
     }
 
     public function getDateTimeFieldHelper(): DateTimeFieldHelper
     {
-        return $this->getFieldHelper(DateTimeFieldHelper::class);
+        $fh = $this->getFieldHelper(DateTimeFieldHelper::class);
+        if (!$fh instanceof DateTimeFieldHelper) {
+            throw UnknownFieldHelperException::fromClassName(DateTimeFieldHelper::class, []);
+        }
+
+        return $fh;
     }
 
     public function getNumberFieldHelper(): NumberFieldHelper
     {
-        return $this->getFieldHelper(NumberFieldHelper::class);
+        $fh = $this->getFieldHelper(NumberFieldHelper::class);
+        if (!$fh instanceof NumberFieldHelper) {
+            throw UnknownFieldHelperException::fromClassName(NumberFieldHelper::class, []);
+        }
+
+        return $fh;
     }
 
     public function getTextFieldHelper(): TextFieldHelper
     {
-        return $this->getFieldHelper(TextFieldHelper::class);
+        $fh = $this->getFieldHelper(TextFieldHelper::class);
+        if (!$fh instanceof TextFieldHelper) {
+            throw UnknownFieldHelperException::fromClassName(TextFieldHelper::class, []);
+        }
+
+        return $fh;
     }
 }

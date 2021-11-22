@@ -72,12 +72,12 @@ class DateTimeFieldHelper extends AbstractFieldHelper
             return false;
         }
 
-        $compareDate = in_array(\get_class($field->value), [DateValue::class, DateTimeValue::class], true);
+        $compareDate = $field->value instanceof DateValue || $field->value instanceof DateTimeValue;
         if ($compareDate && $fieldVal->format('Y-m-d') !== $value->format('Y-m-d')) {
             return false;
         }
 
-        $compareTime = in_array(\get_class($field->value), [TimeValue::class, DateTimeValue::class], true);
+        $compareTime = $field->value instanceof TimeValue || $field->value instanceof DateTimeValue;
         if ($compareTime && $fieldVal->format('H:i:s') !== $value->format('H:i:s')) {
             return false;
         }
@@ -87,12 +87,12 @@ class DateTimeFieldHelper extends AbstractFieldHelper
 
     protected function getDateTimeFieldValue(Field $field): ?DateTime
     {
-        switch (\get_class($field->value)) {
-            case DateValue::class:
+        switch (true) {
+            case $field->value instanceof DateValue:
                 return $field->value->date;
-            case DateTimeValue::class:
+            case $field->value instanceof DateTimeValue:
                 return $field->value->value;
-            case TimeValue::class:
+            case $field->value instanceof TimeValue:
                 if ($field->value->time === null) {
                     return null;
                 }
