@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Tests\DependencyInjection\Compiler;
 
@@ -16,7 +18,7 @@ class FieldHelperPassTest extends TestCase
         $fhp = new FieldHelperPass();
         $container = $this->createMock(ContainerBuilder::class);
         $registryDefinition = $this->createMock(Definition::class);
-        $registryDefinition->expects($this->once())->method('setArgument')->with('$helper',$this->callback(function($arg) {
+        $registryDefinition->expects($this->once())->method('setArgument')->with('$helper', $this->callback(function ($arg) {
             if (1!== count($arg)) {
                 throw new \Exception('No helper registered');
             }
@@ -31,7 +33,7 @@ class FieldHelperPassTest extends TestCase
         $helperDefinition = $this->createMock(Definition::class);
         $helperClass = new BoolFieldHelper();
         $helperDefinition->method('getClass')->willReturn($helperClass);
-        $container->method('findDefinition')->withConsecutive(['elbformat_field_helper.registry'],['elbformat_field_helper.field_helper.test'])->willReturnOnConsecutiveCalls($registryDefinition,$helperDefinition);
+        $container->method('findDefinition')->withConsecutive(['elbformat_field_helper.registry'], ['elbformat_field_helper.field_helper.test'])->willReturnOnConsecutiveCalls($registryDefinition, $helperDefinition);
         $container->method('findTaggedServiceIds')->with('elbformat_field_helper.field_helper')->willReturn(['elbformat_field_helper.field_helper.test' => []]);
         $fhp->process($container);
     }
@@ -41,10 +43,10 @@ class FieldHelperPassTest extends TestCase
         $fhp = new FieldHelperPass();
         $container = $this->createMock(ContainerBuilder::class);
         $registryDefinition = $this->createMock(Definition::class);
-        $registryDefinition->expects($this->once())->method('setArgument')->with('$helper',[]);
+        $registryDefinition->expects($this->once())->method('setArgument')->with('$helper', []);
         $helperDefinition = $this->createMock(Definition::class);
         $helperDefinition->method('getClass')->willReturn(new \stdClass());
-        $container->method('findDefinition')->withConsecutive(['elbformat_field_helper.registry'],['elbformat_field_helper.field_helper.test'])->willReturnOnConsecutiveCalls($registryDefinition,$helperDefinition);
+        $container->method('findDefinition')->withConsecutive(['elbformat_field_helper.registry'], ['elbformat_field_helper.field_helper.test'])->willReturnOnConsecutiveCalls($registryDefinition, $helperDefinition);
         $container->method('findTaggedServiceIds')->with('elbformat_field_helper.field_helper')->willReturn(['elbformat_field_helper.field_helper.test' => []]);
         $fhp->process($container);
     }
