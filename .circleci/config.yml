@@ -21,7 +21,7 @@ jobs:
             - checkout
             - attach_workspace:
                 at: '.'
-            - run: 'vendor/bin/phpunit'
+            - run: 'phpdbg -qrr vendor/bin/phpunit'
             - store_test_results:
                   path: 'build'
     php-cs-fixer:
@@ -32,6 +32,14 @@ jobs:
             - attach_workspace:
                 at: '.'
             - run: 'vendor/bin/php-cs-fixer fix --diff --dry-run .'
+    psalm:
+        docker:
+            - image: 'ezsystems/php:7.4'
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: '.'
+            - run: 'vendor/bin/psalm'
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -42,4 +50,6 @@ workflows:
             - phpunit:
                 requires: ['build']
             - php-cs-fixer:
-                  requires: ['build']
+                requires: ['build']
+            - psalm:
+                requires: ['build']

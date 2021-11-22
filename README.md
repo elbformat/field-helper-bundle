@@ -34,3 +34,4 @@ Further topics
 * [List of supported fields and their helpers](docs/fields.md)
 * [Extending existing helpers](docs/extending.md)
 * [Writing your own helpers](docs/own_helper.md)
+* [Running tests locally](docs/testing.md)

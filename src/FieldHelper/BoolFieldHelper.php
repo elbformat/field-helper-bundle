@@ -55,8 +55,8 @@ class BoolFieldHelper extends AbstractFieldHelper
 
     protected function getBooleanFieldValue(Field $field): ?bool
     {
-        if (CheckboxValue::class !== \get_class($field->value)) {
-            throw InvalidFieldTypeException::fromActualAndExpected($field->value, CheckboxValue::class);
+        if (!$field->value instanceof CheckboxValue) {
+            throw InvalidFieldTypeException::fromActualAndExpected($field->value, [CheckboxValue::class]);
         }
 
         return $field->value->bool;

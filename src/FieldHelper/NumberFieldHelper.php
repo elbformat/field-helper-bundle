@@ -88,10 +88,10 @@ class NumberFieldHelper extends AbstractFieldHelper
      */
     protected function getIntegerFieldValue(Field $field): ?int
     {
-        switch (\get_class($field->value)) {
-            case IntValue::class:
+        switch (true) {
+            case $field->value instanceof  IntValue:
                 return $field->value->value;
-            case FloatValue::class:
+            case $field->value instanceof FloatValue:
                 return null === $field->value->value ? null : (int) round($field->value->value);
             default:
                 $allowed = [IntValue::class, FloatValue::class];
@@ -104,10 +104,10 @@ class NumberFieldHelper extends AbstractFieldHelper
      */
     protected function getFloatFieldValue(Field $field): ?float
     {
-        switch (\get_class($field->value)) {
-            case FloatValue::class:
+        switch (true) {
+            case $field->value instanceof FloatValue:
                 return $field->value->value;
-            case IntValue::class:
+            case $field->value instanceof  IntValue:
                 return null === $field->value->value ? null : (float) $field->value->value;
             default:
                 $allowed = [FloatValue::class, IntValue::class];

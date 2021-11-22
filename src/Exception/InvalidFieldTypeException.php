@@ -12,15 +12,13 @@ namespace Elbformat\FieldHelperBundle\Exception;
 class InvalidFieldTypeException extends \InvalidArgumentException
 {
     /**
-     * @param object $actual
-     * @param string|string[] $expected
+     * @param mixed $actualClass
+     * @param string[] $expectedClasses
      */
-    public static function fromActualAndExpected($actual, $expected): self
+    public static function fromActualAndExpected($actualClass, array $expectedClasses): self
     {
-        if (\is_array($expected)) {
-            $expected = implode('|', $expected);
-        }
-        $msg = sprintf('Expected field type %s but got %s', $expected, \get_class($actual));
+        $expectedString = implode('|', $expectedClasses);
+        $msg = sprintf('Expected field type %s but got %s', $expectedString, is_object($actualClass) ? \get_class($actualClass) : (string)$actualClass);
 
         return new self($msg);
     }

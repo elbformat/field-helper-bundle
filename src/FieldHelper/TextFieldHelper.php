@@ -59,12 +59,11 @@ class TextFieldHelper extends AbstractFieldHelper
 
     protected function getStringFieldValue(Field $field): ?string
     {
-        switch (\get_class($field->value)) {
-            case MailValue::class:
-                return $field->value->email ?? null;
-            case TextLineValue::class:
-            case TextBlockValue::class:
-                return $field->value->text ?? null;
+        switch (true) {
+            case $field->value instanceof MailValue:
+                return $field->value->email;
+            case $field->value instanceof TextLineValue:
+                return $field->value->text;
             default:
                 $allowed = [TextLineValue::class, TextBlockValue::class, MailValue::class];
                 throw InvalidFieldTypeException::fromActualAndExpected($field->value, $allowed);
