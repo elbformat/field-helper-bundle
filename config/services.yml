@@ -12,6 +12,10 @@ services:
         class: Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper
         tags: ['elbformat_field_helper.field_helper']
 
+    elbformat_field_helper.field_helper.matrix:
+        class: Elbformat\FieldHelperBundle\FieldHelper\MatrixFieldHelper
+        tags: ['elbformat_field_helper.field_helper']
+
     elbformat_field_helper.field_helper.number:
         class: Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper
         tags: ['elbformat_field_helper.field_helper']

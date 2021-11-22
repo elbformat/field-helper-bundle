@@ -62,3 +62,9 @@ framework:
 parameters:
     kernel.secret: ~
     io_root_dir: ~
+    locale_fallback: en
+
+webpack_encore:
+    output_path: '%kernel.project_dir%/build/encore'
+lexik_jwt_authentication:
+    secret_key: 'no'

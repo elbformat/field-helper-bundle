@@ -10,6 +10,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\MatrixFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 use Elbformat\FieldHelperBundle\Registry\Registry;
@@ -84,6 +85,15 @@ class RegistryTest extends TestCase
         ];
         $reg = new Registry($helpers);
         $reg->getNumberFieldHelper();
+    }
+
+    public function testGetMatrixFieldHelper()
+    {
+        $helpers = [
+            MatrixFieldHelper::class => $this->createMock(MatrixFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $this->assertInstanceOf(MatrixFieldHelper::class, $reg->getMatrixFieldHelper());
     }
 
     public function testGetTextFieldHelper()

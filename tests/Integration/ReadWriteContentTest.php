@@ -162,6 +162,44 @@ class ReadWriteContentTest extends KernelTestCase
         $this->assertSame(2.0, $fhNum->getFloat($content, 'integer'));
     }
 
+    public function testMatrix(): void
+    {
+        $fhMatrix = $this->fhReg->getMatrixFieldHelper();
+
+        // Create content
+        $newStruct = $this->contentService->newContentCreateStruct(self::$contentType, 'eng-GB');
+        $matrix1 = [
+            ['keycol' => 'A1', 'valcol' => 'B1'],
+            ['keycol' => 'A2', 'valcol' => 'B2'],
+        ];
+        $matrix2 = [
+            ['keycol' => 'A1', 'valcol' => 'B1'],
+            ['keycol' => 'A3', 'valcol' => 'B3'],
+        ];
+        $this->assertTrue($fhMatrix->updateAssoc($newStruct, 'matrix', $matrix1));
+        $content = $this->createContent($newStruct);
+
+        // Read content
+        $this->assertSame([['A1', 'B1'], ['A2', 'B2']], $fhMatrix->getArray($content, 'matrix'));
+        $this->assertSame($matrix1, $fhMatrix->getAssoc($content, 'matrix'));
+        $this->assertSame(['A1', 'A2'], $fhMatrix->getList($content, 'matrix', 'keycol'));
+        $this->assertSame(['B1', 'B2'], $fhMatrix->getList($content, 'matrix', 'valcol'));
+        $this->assertSame(['A1', 'A2'], $fhMatrix->getList($content, 'matrix'));
+        $this->assertSame(['A1' => 'B1', 'A2' => 'B2'], $fhMatrix->getKeyValue($content, 'matrix'));
+
+        // Update content (unchanged)
+        $updStruct = $this->contentService->newContentUpdateStruct();
+        $this->assertFalse($fhMatrix->updateAssoc($updStruct, 'matrix', $matrix1, $content));
+        $this->assertTrue($fhMatrix->updateAssoc($updStruct, 'matrix', $matrix2, $content));
+        $content = $this->updateContent($content, $updStruct);
+        $this->assertSame([['A1', 'B1'], ['A3', 'B3']], $fhMatrix->getArray($content, 'matrix'));
+        $this->assertSame($matrix2, $fhMatrix->getAssoc($content, 'matrix'));
+        $this->assertSame(['A1', 'A3'], $fhMatrix->getList($content, 'matrix', 'keycol'));
+        $this->assertSame(['B1', 'B3'], $fhMatrix->getList($content, 'matrix', 'valcol'));
+        $this->assertSame(['A1', 'A3'], $fhMatrix->getList($content, 'matrix'));
+        $this->assertSame(['A1' => 'B1', 'A3' => 'B3'], $fhMatrix->getKeyValue($content, 'matrix'));
+    }
+
     public function testObjectRelationlist(): void
     {
         $fhRel = $this->fhReg->getRelationFieldHelper();
@@ -244,14 +282,14 @@ class ReadWriteContentTest extends KernelTestCase
 
         // Read content
         $current = new \DateTimeImmutable();
-        $this->assertEquals(new \DateTimeImmutable($current->format('Y-m-d').' 11:11:11'), $fhDate->getDateTime($content, 'time'));
+        $this->assertEquals(new \DateTimeImmutable($current->format('Y-m-d') . ' 11:11:11'), $fhDate->getDateTime($content, 'time'));
 
         // Update content (unchanged)
         $updStruct = $this->contentService->newContentUpdateStruct();
         $this->assertFalse($fhDate->updateDateTime($updStruct, 'time', new \DateTimeImmutable('2021-12-22 11:11:11'), $content));
         $this->assertTrue($fhDate->updateDateTime($updStruct, 'time', new \DateTimeImmutable('2021-12-22 11:11:12'), $content));
         $content = $this->updateContent($content, $updStruct);
-        $this->assertEquals(new \DateTimeImmutable($current->format('Y-m-d').'11:11:12'), $fhDate->getDateTime($content, 'time'));
+        $this->assertEquals(new \DateTimeImmutable($current->format('Y-m-d') . '11:11:12'), $fhDate->getDateTime($content, 'time'));
     }
 
     public function testUrl(): void
@@ -293,6 +331,13 @@ class ReadWriteContentTest extends KernelTestCase
         $this->addField($ctStruct, 'email', 'ezemail', 40);
         $this->addField($ctStruct, 'float', 'ezfloat', 50);
         $this->addField($ctStruct, 'integer', 'ezinteger', 60);
+        $settings = [
+            'columns' => [
+                ['name' => 'Schlüssel', 'identifier' => 'keycol'],
+                ['name' => 'Wert', 'identifier' => 'valcol'],
+            ],
+        ];
+        $this->addField($ctStruct, 'matrix', 'ezmatrix', 70, $settings);
         $this->addField($ctStruct, 'objectrelation', 'ezobjectrelation', 80);
         $this->addField($ctStruct, 'objectrelationlist', 'ezobjectrelationlist', 90);
         $this->addField($ctStruct, 'text', 'eztext', 120);
@@ -312,6 +357,7 @@ class ReadWriteContentTest extends KernelTestCase
     {
         return $this->repo->sudo(function (Repository $repo) use ($newStruct) {
             $newContent = $repo->getContentService()->createContent($newStruct);
+
             return $repo->getContentService()->publishVersion($newContent->versionInfo);
         });
     }
@@ -326,10 +372,13 @@ class ReadWriteContentTest extends KernelTestCase
         });
     }
 
-    protected function addField(ContentTypeCreateStruct $struct, string $name, string $type, int $position)
+    protected function addField(ContentTypeCreateStruct $struct, string $name, string $type, int $position, ?array $settings = null)
     {
         $fieldStruct = $this->repo->getContentTypeService()->newFieldDefinitionCreateStruct($name, $type);
         $fieldStruct->position = $position;
+        if ($settings) {
+            $fieldStruct->fieldSettings = $settings;
+        }
         $struct->addFieldDefinition($fieldStruct);
     }
 

@@ -11,6 +11,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\MatrixFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 
@@ -25,7 +26,7 @@ class Registry implements RegistryInterface
     protected $helper = [];
 
     /** @param array<string,FieldHelperInterface> $helper */
-    public function __construct(array $helper)
+    public function __construct(array $helper=[])
     {
         $this->helper = $helper;
     }
@@ -79,6 +80,11 @@ class Registry implements RegistryInterface
         }
 
         return $fh;
+    }
+
+    public function getMatrixFieldHelper(): MatrixFieldHelper
+    {
+        return $this->getFieldHelper(MatrixFieldHelper::class);
     }
 
     public function getTextFieldHelper(): TextFieldHelper
