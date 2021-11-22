@@ -10,8 +10,8 @@ Implemented types are:
 | DateAndTime  | ezdatetime	   | DateTimeFieldHelper |
 | Date         | ezdate        | DateTimeFieldHelper |
 | EmailAddress | ezemail       | TextFieldHelper     |
-| Float        |
-| Integer      |
+| Float        | ezfloat       | NumberFieldHelper   |
+| Integer      | ezinteger     | NumberFieldHelper   |
 | Matrix       |
 | Relation     |
 | RelationList |

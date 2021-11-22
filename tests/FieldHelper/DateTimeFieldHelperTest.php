@@ -4,7 +4,6 @@ namespace Elbformat\FieldHelperBundle\Tests\FieldHelper;
 
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use Elbformat\FieldHelperBundle\Exception\NotSetException;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\Date\Value as DateValue;

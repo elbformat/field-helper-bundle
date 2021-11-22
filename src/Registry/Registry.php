@@ -7,6 +7,7 @@ use Elbformat\FieldHelperBundle\Exception\UnknownFieldHelperException;
 use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
+use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 
 /**
@@ -43,6 +44,11 @@ class Registry implements RegistryInterface
     public function getDateTimeFieldHelper(): DateTimeFieldHelper
     {
         return $this->getFieldHelper(DateTimeFieldHelper::class);
+    }
+
+    public function getNumberFieldHelper(): NumberFieldHelper
+    {
+        return $this->getFieldHelper(NumberFieldHelper::class);
     }
 
     public function getTextFieldHelper(): TextFieldHelper
