@@ -47,6 +47,26 @@ class NumberFieldHelperTest extends TestCase
         ];
     }
 
+    /**
+     * @dataProvider getFloatProvider
+     */
+    public function testGetFloat(Value $value, ?float $expectedString): void
+    {
+        $fh = new NumberFieldHelper();
+        $content = $this->createContentFromValue($value);
+        $this->assertSame($expectedString, $fh->getFloat($content, 'number_field'));
+    }
+
+    public function getFloatProvider(): array
+    {
+        return [
+            [new IntValue(0), 0.0],
+            [new IntValue(3), 3.0],
+            [new FloatValue(1.0), 1.0],
+            [new FloatValue(1.2), 1.2],
+        ];
+    }
+
     public function testGetIntegerFieldNotFound(): void
     {
         $this->expectException(FieldNotFoundException::class);

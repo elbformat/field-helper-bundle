@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Registry;
 
+use Elbformat\FieldHelperBundle\Exception\InvalidFieldHelperException;
 use Elbformat\FieldHelperBundle\Exception\UnknownFieldHelperException;
 use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
@@ -42,7 +43,7 @@ class Registry implements RegistryInterface
     {
         $fh = $this->getFieldHelper(BoolFieldHelper::class);
         if (!$fh instanceof BoolFieldHelper) {
-            throw UnknownFieldHelperException::fromClassName(BoolFieldHelper::class, []);
+            throw InvalidFieldHelperException::fromClassName(get_class($fh), BoolFieldHelper::class);
         }
 
         return $fh;
@@ -52,7 +53,7 @@ class Registry implements RegistryInterface
     {
         $fh = $this->getFieldHelper(DateTimeFieldHelper::class);
         if (!$fh instanceof DateTimeFieldHelper) {
-            throw UnknownFieldHelperException::fromClassName(DateTimeFieldHelper::class, []);
+            throw InvalidFieldHelperException::fromClassName(get_class($fh), DateTimeFieldHelper::class);
         }
 
         return $fh;
@@ -62,7 +63,7 @@ class Registry implements RegistryInterface
     {
         $fh = $this->getFieldHelper(NumberFieldHelper::class);
         if (!$fh instanceof NumberFieldHelper) {
-            throw UnknownFieldHelperException::fromClassName(NumberFieldHelper::class, []);
+            throw InvalidFieldHelperException::fromClassName(get_class($fh), NumberFieldHelper::class);
         }
 
         return $fh;
@@ -72,7 +73,7 @@ class Registry implements RegistryInterface
     {
         $fh = $this->getFieldHelper(TextFieldHelper::class);
         if (!$fh instanceof TextFieldHelper) {
-            throw UnknownFieldHelperException::fromClassName(TextFieldHelper::class, []);
+            throw InvalidFieldHelperException::fromClassName(get_class($fh), TextFieldHelper::class);
         }
 
         return $fh;

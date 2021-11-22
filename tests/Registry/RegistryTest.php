@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Tests\Registry;
 
+use Elbformat\FieldHelperBundle\Exception\InvalidFieldHelperException;
 use Elbformat\FieldHelperBundle\Exception\UnknownFieldHelperException;
 use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
@@ -35,10 +36,30 @@ class RegistryTest extends TestCase
         $this->assertInstanceOf(BoolFieldHelper::class, $reg->getBoolFieldHelper());
     }
 
+    public function testGetBoolFieldHelperInvalid()
+    {
+        $this->expectException(InvalidFieldHelperException::class);
+        $helpers = [
+            BoolFieldHelper::class => $this->createMock(NumberFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $this->assertInstanceOf(BoolFieldHelper::class, $reg->getBoolFieldHelper());
+    }
+
     public function testGetDateTimeFieldHelper()
     {
         $helpers = [
             DateTimeFieldHelper::class => $this->createMock(DateTimeFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $this->assertInstanceOf(DateTimeFieldHelper::class, $reg->getDateTimeFieldHelper());
+    }
+
+    public function testGetDateTimeFieldHelperInvalid()
+    {
+        $this->expectException(InvalidFieldHelperException::class);
+        $helpers = [
+            DateTimeFieldHelper::class => $this->createMock(NumberFieldHelper::class),
         ];
         $reg = new Registry($helpers);
         $this->assertInstanceOf(DateTimeFieldHelper::class, $reg->getDateTimeFieldHelper());
@@ -53,10 +74,30 @@ class RegistryTest extends TestCase
         $this->assertInstanceOf(NumberFieldHelper::class, $reg->getNumberFieldHelper());
     }
 
+    public function testGetNumberFieldHelperInvalid()
+    {
+        $this->expectException(InvalidFieldHelperException::class);
+        $helpers = [
+            NumberFieldHelper::class => $this->createMock(TextFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $this->assertInstanceOf(NumberFieldHelper::class, $reg->getNumberFieldHelper());
+    }
+
     public function testGetTextFieldHelper()
     {
         $helpers = [
             TextFieldHelper::class => $this->createMock(TextFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $this->assertInstanceOf(TextFieldHelper::class, $reg->getTextFieldHelper());
+    }
+
+    public function testGetTextFieldHelperInvalid()
+    {
+        $this->expectException(InvalidFieldHelperException::class);
+        $helpers = [
+            TextFieldHelper::class => $this->createMock(NumberFieldHelper::class),
         ];
         $reg = new Registry($helpers);
         $this->assertInstanceOf(TextFieldHelper::class, $reg->getTextFieldHelper());
