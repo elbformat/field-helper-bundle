@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\FieldHelper;
 
+use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
@@ -23,6 +24,10 @@ class TextFieldHelper extends AbstractFieldHelper
         return self::class;
     }
 
+    /**
+     * @throws FieldNotFoundException
+     * @throws InvalidFieldTypeException
+     */
     public function getString(Content $content, string $fieldName): ?string
     {
         $field = $this->getField($content, $fieldName);

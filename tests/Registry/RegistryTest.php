@@ -5,6 +5,7 @@ namespace Elbformat\FieldHelperBundle\Tests\Registry;
 use Elbformat\FieldHelperBundle\Exception\UnknownFieldHelperException;
 use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\Registry\Registry;
 use PHPUnit\Framework\TestCase;
@@ -37,6 +38,14 @@ class RegistryTest extends TestCase
         ];
         $reg = new Registry($helpers);
         $this->assertInstanceOf(DateTimeFieldHelper::class, $reg->getDateTimeFieldHelper());
+    }
+
+    public function testGetNumberFieldHelper() {
+        $helpers = [
+            NumberFieldHelper::class => $this->createMock(NumberFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $this->assertInstanceOf(NumberFieldHelper::class, $reg->getNumberFieldHelper());
     }
 
     public function testGetTextFieldHelper() {
