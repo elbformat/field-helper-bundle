@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\DependencyInjection\Compiler;
 
@@ -14,7 +16,8 @@ use Symfony\Component\DependencyInjection\Reference;
  */
 class FieldHelperPass implements CompilerPassInterface
 {
-    public function process(ContainerBuilder $container): void {
+    public function process(ContainerBuilder $container): void
+    {
         $definition = $container->findDefinition('elbformat_field_helper.registry');
 
         // find all tagged services
@@ -29,6 +32,6 @@ class FieldHelperPass implements CompilerPassInterface
             $helperName = $class::getName();
             $helpers[$helperName] = new Reference($id);
         }
-        $definition->setArgument('$helper',$helpers);
+        $definition->setArgument('$helper', $helpers);
     }
 }

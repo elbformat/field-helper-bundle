@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Tests\Registry;
 
@@ -24,7 +26,8 @@ class RegistryTest extends TestCase
         $this->assertInstanceOf(TextFieldHelper::class, $reg->getFieldHelper(TextFieldHelper::class));
     }
 
-    public function testGetBoolFieldHelper() {
+    public function testGetBoolFieldHelper()
+    {
         $helpers = [
             BoolFieldHelper::class => $this->createMock(BoolFieldHelper::class),
         ];
@@ -32,7 +35,8 @@ class RegistryTest extends TestCase
         $this->assertInstanceOf(BoolFieldHelper::class, $reg->getBoolFieldHelper());
     }
 
-    public function testGetDateTimeFieldHelper() {
+    public function testGetDateTimeFieldHelper()
+    {
         $helpers = [
             DateTimeFieldHelper::class => $this->createMock(DateTimeFieldHelper::class),
         ];
@@ -40,7 +44,8 @@ class RegistryTest extends TestCase
         $this->assertInstanceOf(DateTimeFieldHelper::class, $reg->getDateTimeFieldHelper());
     }
 
-    public function testGetNumberFieldHelper() {
+    public function testGetNumberFieldHelper()
+    {
         $helpers = [
             NumberFieldHelper::class => $this->createMock(NumberFieldHelper::class),
         ];
@@ -48,7 +53,8 @@ class RegistryTest extends TestCase
         $this->assertInstanceOf(NumberFieldHelper::class, $reg->getNumberFieldHelper());
     }
 
-    public function testGetTextFieldHelper() {
+    public function testGetTextFieldHelper()
+    {
         $helpers = [
             TextFieldHelper::class => $this->createMock(TextFieldHelper::class),
         ];
