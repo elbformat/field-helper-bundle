@@ -7,6 +7,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 
 interface RegistryInterface
 {
@@ -19,4 +20,6 @@ interface RegistryInterface
     public function getNumberFieldHelper(): NumberFieldHelper;
 
     public function getTextFieldHelper(): TextFieldHelper;
+
+    public function getUrlFieldHelper(): UrlFieldHelper;
 }
