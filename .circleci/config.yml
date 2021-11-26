@@ -10,7 +10,7 @@ jobs:
             - image: 'ezsystems/php:7.4'
         steps:
             - checkout
-            - run: 'composer install --dev'
+            - run: 'COMPOSER_MEMORY_LIMIT=-1 composer install --dev'
             - persist_to_workspace:
                 root: '.'
                 paths: 'vendor'
@@ -21,7 +21,7 @@ jobs:
             - checkout
             - attach_workspace:
                 at: '.'
-            - run: 'phpdbg -qrr vendor/bin/phpunit'
+            - run: 'phpdbg -qrr -d memory_limit=4G vendor/bin/phpunit'
             - store_test_results:
                   path: 'build'
     php-cs-fixer:
@@ -31,7 +31,8 @@ jobs:
             - checkout
             - attach_workspace:
                 at: '.'
-            - run: 'vendor/bin/php-cs-fixer fix --diff --dry-run .'
+            - run: 'vendor/bin/php-cs-fixer fix --diff --dry-run src'
+            - run: 'vendor/bin/php-cs-fixer fix --diff --dry-run tests'
     psalm:
         docker:
             - image: 'ezsystems/php:7.4'

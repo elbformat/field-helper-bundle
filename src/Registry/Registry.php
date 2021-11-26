@@ -10,6 +10,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 
@@ -65,6 +66,16 @@ class Registry implements RegistryInterface
         $fh = $this->getFieldHelper(NumberFieldHelper::class);
         if (!$fh instanceof NumberFieldHelper) {
             throw InvalidFieldHelperException::fromClassName(get_class($fh), NumberFieldHelper::class);
+        }
+
+        return $fh;
+    }
+
+    public function getRelationFieldHelper(): RelationFieldHelper
+    {
+        $fh = $this->getFieldHelper(RelationFieldHelper::class);
+        if (!$fh instanceof RelationFieldHelper) {
+            throw InvalidFieldHelperException::fromClassName(get_class($fh), RelationFieldHelper::class);
         }
 
         return $fh;

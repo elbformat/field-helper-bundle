@@ -3,8 +3,6 @@ services:
 
     elbformat_field_helper.registry:
         class: Elbformat\FieldHelperBundle\Registry\Registry
-        arguments:
-            $helper: []
 
     elbformat_field_helper.field_helper.bool:
         class: Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper
@@ -16,6 +14,14 @@ services:
 
     elbformat_field_helper.field_helper.number:
         class: Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper
+        tags: ['elbformat_field_helper.field_helper']
+
+    elbformat_field_helper.field_helper.relation:
+        class: Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper
+        arguments:
+            $repo: '@eZ\Publish\API\Repository\Repository'
+            $responseTagger: '@ezplatform.view_cache.response_tagger.dispatcher'
+            $logger: '@logger'
         tags: ['elbformat_field_helper.field_helper']
 
     elbformat_field_helper.field_helper.text:
