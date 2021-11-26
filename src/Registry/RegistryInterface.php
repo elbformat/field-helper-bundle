@@ -6,6 +6,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 
@@ -18,6 +19,8 @@ interface RegistryInterface
     public function getDateTimeFieldHelper(): DateTimeFieldHelper;
 
     public function getNumberFieldHelper(): NumberFieldHelper;
+
+    public function getRelationFieldHelper(): RelationFieldHelper;
 
     public function getTextFieldHelper(): TextFieldHelper;
 

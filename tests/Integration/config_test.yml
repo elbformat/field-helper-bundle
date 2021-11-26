@@ -1,0 +1,49 @@
+services:
+    test_registry_consumer:
+        autowire: true
+        public: true
+        class: Elbformat\FieldHelperBundle\Tests\Integration\TestRegistryConsumer
+
+ezpublish:
+    siteaccess:
+        list: [default]
+        default_siteaccess: default
+        match:
+            Map\Host:
+                localhost: default
+    http_cache:
+        purge_type: local
+    repositories:
+        default:
+            storage: ~
+            search:
+                engine: 'legacy'
+                connection: default
+
+doctrine:
+    dbal:
+        default_connection: default
+        connections:
+            default:
+                # configure these for your database server
+                driver: 'pdo_mysql'
+#    orm:
+#        auto_generate_proxy_classes: true
+
+jms_translation:
+
+security:
+    firewalls:
+        main:
+            anonymous: ~
+
+framework:
+    test: true
+    router:
+        resource: ~
+    session:
+
+
+parameters:
+    kernel.secret: ~
+    io_root_dir: ~
