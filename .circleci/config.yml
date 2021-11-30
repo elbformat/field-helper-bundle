@@ -21,7 +21,41 @@ jobs:
             - checkout
             - attach_workspace:
                 at: '.'
-            - run: 'phpdbg -qrr -d memory_limit=4G vendor/bin/phpunit'
+            - run: 'phpdbg -qrr -d memory_limit=4G vendor/bin/phpunit --testsuite unit'
+            - store_test_results:
+                  path: 'build'
+    phpunit-integration:
+        docker:
+            - image: 'ezsystems/php:7.4'
+              environment:
+                  DATABASE_HOST: "127.0.0.1"
+                  DATABASE_NAME: "ezp"
+                  DATABASE_USER: "ezp"
+                  DATABASE_PASSWORD: "ezp"
+            - image: 'mariadb:10.3'
+              environment:
+                  MYSQL_ROOT_PASSWORD: "root"
+                  MYSQL_DATABASE: "ezp"
+                  MYSQL_USER: "ezp"
+                  MYSQL_PASSWORD: "ezp"
+        steps:
+            - checkout
+            - attach_workspace:
+                  at: '.'
+            -   run:
+                    # Our primary container isn't MYSQL so run a sleep command until it's ready.
+                    name: Waiting for MySQL to be ready
+                    command: |
+                        apt update
+                        apt install -y netcat
+                        for i in `seq 1 10`;
+                        do
+                          nc -z 127.0.0.1 3306 && echo Success && exit 0
+                          echo -n .
+                          sleep 1
+                        done
+                        echo Failed waiting for MySQL && exit 1
+            - run: 'vendor/bin/phpunit --testsuite integration'
             - store_test_results:
                   path: 'build'
     php-cs-fixer:
@@ -50,6 +84,8 @@ workflows:
             - build
             - phpunit:
                 requires: ['build']
+            - phpunit-integration:
+                  requires: ['build']
             - php-cs-fixer:
                 requires: ['build']
             - psalm:

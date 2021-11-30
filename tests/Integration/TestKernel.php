@@ -10,7 +10,9 @@ use eZ\Bundle\EzPublishCoreBundle\EzPublishCoreBundle;
 use eZ\Bundle\EzPublishIOBundle\EzPublishIOBundle;
 use eZ\Bundle\EzPublishLegacySearchEngineBundle\EzPublishLegacySearchEngineBundle;
 use EzSystems\DoctrineSchemaBundle\DoctrineSchemaBundle;
+use EzSystems\EzPlatformRichTextBundle\EzPlatformRichTextBundle;
 use EzSystems\PlatformHttpCacheBundle\EzSystemsPlatformHttpCacheBundle;
+use EzSystems\PlatformInstallerBundle\EzSystemsPlatformInstallerBundle;
 use FOS\HttpCacheBundle\FOSHttpCacheBundle;
 use FOS\JsRoutingBundle\FOSJsRoutingBundle;
 use Hautelook\TemplatedUriBundle\HautelookTemplatedUriBundle;
@@ -47,10 +49,12 @@ class TestKernel extends Kernel
             new EzPublishCoreBundle(),
             new EzPublishLegacySearchEngineBundle(),
 //            new EzPublishIOBundle(),
-//            new DoctrineSchemaBundle(),
+            new DoctrineSchemaBundle(),
             new EzSystemsPlatformHttpCacheBundle(),
             new HautelookTemplatedUriBundle(),
             new ElbformatFieldHelperBundle(),
+            new EzSystemsPlatformInstallerBundle(),
+            new EzPlatformRichTextBundle(),
         ];
     }
 

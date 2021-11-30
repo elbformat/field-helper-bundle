@@ -1,0 +1,24 @@
+version: '2.1'
+services:
+    php:
+        image: ezsystems/php:7.4
+        environment:
+            SYMFONY_ENV: "prod"
+            TZ: "Europe/Berlin"
+            DATABASE_HOST: "mysql"
+            DATABASE_NAME: "ezp"
+            DATABASE_USER: "ezp"
+            DATABASE_PASSWORD: "ezp"
+            XDEBUG_CONFIG: "client_host=172.17.0.1 idekey=PHPSTORM"
+            XDEBUG_MODE: "debug"
+        volumes:
+            - ./:/var/www
+
+    mysql:
+        image: mariadb:10.3
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "ezp"
+            MYSQL_USER: "ezp"
+            MYSQL_PASSWORD: "ezp"
+            TZ: "Europe/Berlin"
