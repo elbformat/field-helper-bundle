@@ -5,22 +5,16 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\Tests\Integration;
 
 use Elbformat\FieldHelperBundle\Registry\Registry;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */
-class IntegrationTest extends KernelTestCase
+class DependencyInjectionTest extends KernelTestCase
 {
     public function testContainerConfig(): void
     {
-        $_ENV['KERNEL_CLASS'] = TestKernel::class;
-        self::bootKernel(['environment' => 'prod']);
-        $container = static::getContainer();
-
         // Must be injected correctly into our test service
-        /** @var Registry $registry */
-        $registry = $container->get('test_registry_consumer')->registry;
+        $registry = $this->containerInstance->get('test_registry_consumer')->registry;
         $this->assertInstanceOf(Registry::class, $registry);
 
         // Fetch helpers via registry or directly from container
@@ -33,7 +27,7 @@ class IntegrationTest extends KernelTestCase
             $expectedClass = 'Elbformat\\FieldHelperBundle\\FieldHelper\\'.$class;
 
             $this->assertInstanceOf($expectedClass, call_user_func([$registry,'get'.$class]));
-            $this->assertInstanceOf($expectedClass, $container->get('elbformat_field_helper.field_helper.'. $prefix), 'Missing service for '.$prefix.' helper.');
+            $this->assertInstanceOf($expectedClass, $this->containerInstance->get('elbformat_field_helper.field_helper.'. $prefix), 'Missing service for '.$prefix.' helper.');
         }
     }
 }
