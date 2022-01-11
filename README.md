@@ -1,4 +1,5 @@
 [![CircleCI](https://circleci.com/gh/elbformat/field-helper-bundle/tree/main.svg?style=svg)](https://circleci.com/gh/elbformat/field-helper-bundle/tree/main)
+[![codecov](https://codecov.io/gh/elbformat/field-helper-bundle/branch/main/graph/badge.svg?token=TQATH67HKN)](https://codecov.io/gh/elbformat/field-helper-bundle)
 [![License Badge](https://img.shields.io/github/license/datengaertnerei/test-data-service.svg)](https://mit-license.org/)
 
 # Elbformat Field Helper Bundle for ibexa DXP
