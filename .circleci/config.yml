@@ -2,6 +2,9 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 
+orbs:
+    codecov: codecov/codecov@3.2.2
+
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -24,6 +27,8 @@ jobs:
             - run: 'phpdbg -qrr -d memory_limit=4G vendor/bin/phpunit --testsuite unit'
             - store_test_results:
                   path: 'build'
+            - codecov/upload:
+                  file: 'build/clover.xml'
     phpunit-integration:
         docker:
             - image: 'hgiesenow/php:7.4'
@@ -58,6 +63,8 @@ jobs:
             - run: 'vendor/bin/phpunit --testsuite integration'
             - store_test_results:
                   path: 'build'
+            - codecov/upload:
+                file: 'build/clover.xml'
     php-cs-fixer:
         docker:
             - image: 'hgiesenow/php:7.4'
