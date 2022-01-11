@@ -7,16 +7,16 @@ version: 2.1
 jobs:
     build:
         docker:
-            - image: 'ezsystems/php:7.4'
+            - image: 'hgiesenow/php:7.4'
         steps:
             - checkout
-            - run: 'COMPOSER_MEMORY_LIMIT=-1 composer install --dev'
+            - run: 'composer install --dev'
             - persist_to_workspace:
                 root: '.'
                 paths: 'vendor'
     phpunit:
         docker:
-            - image: 'ezsystems/php:7.4'
+            - image: 'hgiesenow/php:7.4'
         steps:
             - checkout
             - attach_workspace:
@@ -26,7 +26,7 @@ jobs:
                   path: 'build'
     phpunit-integration:
         docker:
-            - image: 'ezsystems/php:7.4'
+            - image: 'hgiesenow/php:7.4'
               environment:
                   DATABASE_HOST: "127.0.0.1"
                   DATABASE_NAME: "ezp"
@@ -60,7 +60,7 @@ jobs:
                   path: 'build'
     php-cs-fixer:
         docker:
-            - image: 'ezsystems/php:7.4'
+            - image: 'hgiesenow/php:7.4'
         steps:
             - checkout
             - attach_workspace:
@@ -69,7 +69,7 @@ jobs:
             - run: 'vendor/bin/php-cs-fixer fix --diff --dry-run tests'
     psalm:
         docker:
-            - image: 'ezsystems/php:7.4'
+            - image: 'hgiesenow/php:7.4'
         steps:
             - checkout
             - attach_workspace:
