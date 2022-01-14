@@ -10,6 +10,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 use Elbformat\FieldHelperBundle\Registry\Registry;
@@ -141,6 +142,25 @@ class RegistryTest extends TestCase
         ];
         $reg = new Registry($helpers);
         $reg->getUrlFieldHelper();
+    }
+
+    public function testGetRichTextFieldHelper(): void
+    {
+        $helpers = [
+            RichtextFieldHelper::class => $this->createMock(RichtextFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $this->assertInstanceOf(RichtextFieldHelper::class, $reg->getRichtextFieldHelper());
+    }
+
+    public function testGetRichTextFieldHelperInvalid(): void
+    {
+        $this->expectException(InvalidFieldHelperException::class);
+        $helpers = [
+            RichtextFieldHelper::class => $this->createMock(TextFieldHelper::class),
+        ];
+        $reg = new Registry($helpers);
+        $reg->getRichtextFieldHelper();
     }
 
     public function testGetFieldHelperUnknown()

@@ -31,3 +31,9 @@ services:
     elbformat_field_helper.field_helper.url:
         class: Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper
         tags: ['elbformat_field_helper.field_helper']
+
+    elbformat_field_helper.field_helper.richtext:
+        class: Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper
+        arguments:
+            $fieldHelper: '@ezpublish.field_helper'
+        tags: ['elbformat_field_helper.field_helper']

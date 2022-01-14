@@ -11,6 +11,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 
@@ -96,6 +97,16 @@ class Registry implements RegistryInterface
         $fh = $this->getFieldHelper(UrlFieldHelper::class);
         if (!$fh instanceof UrlFieldHelper) {
             throw InvalidFieldHelperException::fromClassName(get_class($fh), UrlFieldHelper::class);
+        }
+
+        return $fh;
+    }
+
+    public function getRichtextFieldHelper(): RichtextFieldHelper
+    {
+        $fh = $this->getFieldHelper(RichtextFieldHelper::class);
+        if (!$fh instanceof RichtextFieldHelper) {
+            throw InvalidFieldHelperException::fromClassName(get_class($fh), RichtextFieldHelper::class);
         }
 
         return $fh;
