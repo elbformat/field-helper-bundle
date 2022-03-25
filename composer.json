@@ -31,7 +31,7 @@
   },
   "require": {
     "php": ">=7.4",
-    "ibexa/oss": "^3.3",
+    "ibexa/oss": "^4.0",
     "ext-dom": "*"
   },
   "require-dev": {
