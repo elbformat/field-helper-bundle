@@ -35,9 +35,9 @@
     "ext-dom": "*"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^3.3",
-    "phpunit/phpunit": "^8.5",
-    "vimeo/psalm": "^4.13"
+    "friendsofphp/php-cs-fixer": "3.8.0",
+    "phpunit/phpunit": "8.5.27",
+    "vimeo/psalm": "4.23.0"
   },
   "config": {
     "allow-plugins": {
