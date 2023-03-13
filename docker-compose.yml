@@ -1,7 +1,7 @@
 version: '2.1'
 services:
     php:
-        image: hgiesenow/php:7.4
+        image: hgiesenow/php:8.2
         environment:
             SYMFONY_ENV: "prod"
             TZ: "Europe/Berlin"

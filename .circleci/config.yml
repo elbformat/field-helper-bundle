@@ -10,7 +10,7 @@ orbs:
 jobs:
     build:
         docker:
-            - image: 'hgiesenow/php:7.4'
+            - image: 'hgiesenow/php:8.2'
         steps:
             - checkout
             - run: 'composer install --dev'
@@ -19,7 +19,7 @@ jobs:
                 paths: 'vendor'
     phpunit:
         docker:
-            - image: 'hgiesenow/php:7.4'
+            - image: 'hgiesenow/php:8.2'
         steps:
             - checkout
             - attach_workspace:
@@ -31,7 +31,7 @@ jobs:
                   file: 'build/clover.xml'
     phpunit-integration:
         docker:
-            - image: 'hgiesenow/php:7.4'
+            - image: 'hgiesenow/php:8.2'
               environment:
                   DATABASE_HOST: "127.0.0.1"
                   DATABASE_NAME: "ezp"
@@ -67,7 +67,7 @@ jobs:
                 file: 'build/clover.xml'
     php-cs-fixer:
         docker:
-            - image: 'hgiesenow/php:7.4'
+            - image: 'hgiesenow/php:8.2'
         steps:
             - checkout
             - attach_workspace:
@@ -76,7 +76,7 @@ jobs:
             - run: 'vendor/bin/php-cs-fixer fix --diff --dry-run tests'
     psalm:
         docker:
-            - image: 'hgiesenow/php:7.4'
+            - image: 'hgiesenow/php:8.2'
         steps:
             - checkout
             - attach_workspace:
