@@ -11,14 +11,10 @@ use eZ\Publish\Core\FieldType\Url\Value;
  */
 class Url
 {
-    protected ?string $url;
-
-    protected ?string $text;
-
-    protected function __construct(?string $url, ?string $text)
-    {
-        $this->url = $url;
-        $this->text = $text;
+    protected function __construct(
+        protected ?string $url,
+        protected ?string $text
+    ) {
     }
 
     public static function fromUrlValue(Value $value): self

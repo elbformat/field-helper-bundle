@@ -25,14 +25,15 @@ class FieldHelperPass implements CompilerPassInterface
         $taggedServices = $container->findTaggedServiceIds('elbformat_field_helper.field_helper');
         $helpers = [];
         foreach (array_keys($taggedServices) as $id) {
-            $class = $container->findDefinition($id)->getClass();
+            $fhDef = $container->findDefinition($id);
+            $fhDef->setLazy(true);
+            $class = $fhDef->getClass();
             if (null === $class || !is_subclass_of($class, FieldHelperInterface::class)) {
                 continue;
             }
-            $helperName = $class::getName();
+            $helperName = $class;
             $helpers[$helperName] = new Reference($id);
         }
         $definition->setArgument('$helper', $helpers);
-//        var_dump($taggedServices);die;
     }
 }

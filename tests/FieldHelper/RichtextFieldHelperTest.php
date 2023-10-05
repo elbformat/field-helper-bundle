@@ -11,6 +11,7 @@ use eZ\Publish\Core\Helper\FieldHelper;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
 use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichTextValue;
+use EzSystems\EzPlatformRichText\eZ\RichText\Converter;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -26,8 +27,9 @@ class RichtextFieldHelperTest extends TestCase
     {
         $fieldHelper = $this->createMock(FieldHelper::class);
         $fieldHelper->method('isFieldEmpty')->willReturnCallback([$this, 'isEmptyField']);
+        $converter = $this->createMock(Converter::class);
 
-        $this->richtextFieldHelper = new RichtextFieldHelper($fieldHelper);
+        $this->richtextFieldHelper = new RichtextFieldHelper($fieldHelper, $converter);
     }
 
     public function testGetName(): void
