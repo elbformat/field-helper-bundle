@@ -19,7 +19,7 @@ class FieldHelperPassTest extends TestCase
         $container = $this->createMock(ContainerBuilder::class);
         $registryDefinition = $this->createMock(Definition::class);
         $registryDefinition->expects($this->once())->method('setArgument')->with('$helper', $this->callback(function ($arg) {
-            if (1!== count($arg)) {
+            if (1 !== count($arg)) {
                 throw new \Exception('No helper registered');
             }
             if (BoolFieldHelper::class !== array_keys($arg)[0]) {
@@ -32,7 +32,7 @@ class FieldHelperPassTest extends TestCase
         }));
         $helperDefinition = $this->createMock(Definition::class);
         $helperClass = new BoolFieldHelper();
-        $helperDefinition->method('getClass')->willReturn($helperClass);
+        $helperDefinition->method('getClass')->willReturn($helperClass::class);
         $container->method('findDefinition')->withConsecutive(['elbformat_field_helper.registry'], ['elbformat_field_helper.field_helper.test'])->willReturnOnConsecutiveCalls($registryDefinition, $helperDefinition);
         $container->method('findTaggedServiceIds')->with('elbformat_field_helper.field_helper')->willReturn(['elbformat_field_helper.field_helper.test' => []]);
         $fhp->process($container);

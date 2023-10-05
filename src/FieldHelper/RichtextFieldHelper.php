@@ -4,11 +4,13 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\FieldHelper;
 
+use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\Helper\FieldHelper;
 use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value;
+use EzSystems\EzPlatformRichText\eZ\RichText\Converter as RichtextConverter;
 
 /**
  * Helps reading, updating and comparing richtext field types.
@@ -18,11 +20,10 @@ use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value;
  */
 class RichtextFieldHelper extends AbstractFieldHelper
 {
-    protected FieldHelper $fieldHelper;
-
-    public function __construct(FieldHelper $fieldHelper)
-    {
-        $this->fieldHelper = $fieldHelper;
+    public function __construct(
+        protected FieldHelper $fieldHelper,
+        protected RichtextConverter $richtextConverter
+    ) {
     }
 
     public static function getName(): string
@@ -37,8 +38,22 @@ class RichtextFieldHelper extends AbstractFieldHelper
         return $this->getXmlFieldValue($field);
     }
 
+    public function getHtml(Content $content, string $fieldName): string
+    {
+        $xml = $this->getXml($content, $fieldName);
+        if (null === $xml) {
+            return '';
+        }
+
+        return trim($this->richtextConverter->convert($xml)->saveHTML() ?: '');
+    }
+
     public function isEmpty(Content $content, string $fieldName): bool
     {
+        $field = $content->getField($fieldName);
+        if (null === $field) {
+            throw FieldNotFoundException::fromContentAndField($content, $fieldName);
+        }
         return $this->fieldHelper->isFieldEmpty($content, $fieldName);
     }
 

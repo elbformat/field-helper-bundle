@@ -30,13 +30,14 @@
     }
   },
   "require": {
-    "php": ">=7.4",
+    "php": ">=8.1",
     "ibexa/oss": "^3.3",
-    "ext-dom": "*"
+    "ext-dom": "*",
+    "netgen/tagsbundle": "^4.0"
   },
   "require-dev": {
     "friendsofphp/php-cs-fixer": "^3.3",
-    "phpunit/phpunit": "^8.5",
+    "phpunit/phpunit": "^9.5",
     "vimeo/psalm": "^4.13"
   },
   "config": {
@@ -44,7 +45,8 @@
       "composer/package-versions-deprecated": true,
       "ibexa/post-install": true,
       "symfony/flex": true,
-      "symfony/thanks": true
+      "symfony/thanks": true,
+      "php-http/discovery": false
     }
   }
 }

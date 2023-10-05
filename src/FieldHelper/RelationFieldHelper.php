@@ -19,17 +19,11 @@ use Psr\Log\LoggerInterface;
  */
 class RelationFieldHelper extends AbstractFieldHelper
 {
-    protected Repository $repo;
-
-    protected ResponseTagger $responseTagger;
-
-    protected LoggerInterface $logger;
-
-    public function __construct(Repository $repo, ResponseTagger $responseTagger, LoggerInterface $logger)
-    {
-        $this->repo = $repo;
-        $this->responseTagger = $responseTagger;
-        $this->logger = $logger;
+    public function __construct(
+        protected Repository $repo,
+        protected ResponseTagger $responseTagger,
+        protected LoggerInterface $logger
+    ) {
     }
 
     public static function getName(): string
@@ -49,7 +43,6 @@ class RelationFieldHelper extends AbstractFieldHelper
         }
         $id = $ids[0];
 
-        /** @var Content $targetContent */
         $targetContent = $this->repo->sudo(
             function (Repository $repo) use ($id) {
                 return $repo->getContentService()->loadContent($id);
@@ -72,7 +65,6 @@ class RelationFieldHelper extends AbstractFieldHelper
         $contents = [];
         foreach ($ids as $contentId) {
             try {
-                /** @var Content $childContent */
                 $childContent = $this->repo->sudo(
                     function (Repository $repo) use ($contentId) {
                         return $repo->getContentService()->loadContent($contentId);
@@ -116,29 +108,22 @@ class RelationFieldHelper extends AbstractFieldHelper
     protected function getRelationIds(Content $content, string $fieldName): array
     {
         $field = $this->getField($content, $fieldName);
-        switch (true) {
-            case $field->value instanceof RelationListValue:
-                $ids = $field->value->destinationContentIds;
-                break;
-            case $field->value instanceof RelationValue:
-                $ids = $field->value->destinationContentId ? [$field->value->destinationContentId] : [];
-                break;
-            default:
-                /** @psalm-suppress DeprecatedClass */
-                $allowed = [RelationListValue::class, RelationValue::class];
-                throw InvalidFieldTypeException::fromActualAndExpected($field->value, $allowed);
+        if ($field->value instanceof RelationListValue) {
+            $stringIds = $field->value->destinationContentIds;
+            // Make integers from mixed
+            $ids = [];
+            /** @var mixed $stringId */
+            foreach ($stringIds as $stringId) {
+                $ids[] = (int) $stringId;
+            }
+        } elseif($field->value instanceof RelationValue) {
+            $ids = $field->value->destinationContentId ? [(int)$field->value->destinationContentId] : [];
+        } else {
+            /** @psalm-suppress DeprecatedClass */
+            $allowed = [RelationListValue::class, RelationValue::class];
+            throw InvalidFieldTypeException::fromActualAndExpected($field->value, $allowed);
         }
 
-        // Make integers from mixed
-        $intIds = [];
-        /** @var mixed $stringId */
-        foreach ($ids as $stringId) {
-            $intIds[] = (int) $stringId;
-        }
-//        array_walk($ids, function (&$id) {
-//            $id = (int) $id;
-//        });
-
-        return $intIds;
+        return $ids;
     }
 }

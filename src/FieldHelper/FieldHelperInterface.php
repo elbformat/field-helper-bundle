@@ -11,5 +11,4 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
  */
 interface FieldHelperInterface
 {
-    public static function getName(): string;
 }
