@@ -10,7 +10,7 @@ orbs:
 jobs:
     build:
         docker:
-            - image: 'hgiesenow/php:7.4'
+            - image: 'hgiesenow/php:8.1'
         steps:
             - checkout
             - run: 'composer install --dev'
@@ -19,7 +19,7 @@ jobs:
                 paths: 'vendor'
     phpunit:
         docker:
-            - image: 'hgiesenow/php:7.4'
+            - image: 'hgiesenow/php:8.1'
         steps:
             - checkout
             - attach_workspace:

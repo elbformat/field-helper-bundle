@@ -1,4 +1,9 @@
+# TODO: Build and push automatically https://docs.github.com/en/actions/publishing-packages/publishing-docker-images#publishing-images-to-github-packages
+# Until then, do it manually
+# docker build -t ghcr.io/elbformat/field-helper-bundle/php:8.1 . -f docker/Dockerfile.php
+# docker push
 FROM php:8.1-alpine
+LABEL org.opencontainers.image.source="https://github.com/elbformat/field-helper-bundle"
 
 # For code coverage
 RUN apk add --no-cache --virtual .build-deps autoconf g++ make && \
