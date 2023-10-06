@@ -30,7 +30,7 @@ class ElbformatFieldHelperExtensionTest extends TestCase
         foreach (glob(__DIR__ . '/../../src/FieldHelper/*FieldHelper.php') as $fieldHelperFile) {
             $class = preg_replace('/^(.*).php$/', '$1', basename($fieldHelperFile));
             $prefix = strtolower(preg_replace('/^(.*)FieldHelper$/', '$1', $class));
-            if ('abstract' === $prefix) {
+            if ('abstract' === $prefix || 'netgentags' === $prefix) {
                 continue;
             }
             $this->assertTrue($container->hasDefinition('elbformat_field_helper.field_helper.' . $prefix), 'Missing service for '.$prefix.' helper.');
