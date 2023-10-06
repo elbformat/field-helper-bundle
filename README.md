@@ -31,6 +31,7 @@ public function getFields(RegistryInterface $fieldHelperRegistry, Content $conte
 Further topics
 ==============
 * [Installation](docs/installation.md)
+* [Changelog](docs/changelog.md)
 * [How to use the field helpers](docs/usage.md)
 * [List of supported fields and their helpers](docs/fields.md)
 * [Extending existing helpers](docs/extending.md)

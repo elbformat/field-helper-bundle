@@ -2,9 +2,9 @@
 
 To run the steps from circle ci locally, you can use the same docker image
 ```bash
-docker run -it -v $(pwd)/:/var/www ghcr.io/elbformat/field-helper-bundle/php:8.1 sh
+docker-compose run php sh
 composer install --dev
-phpdbg -qrr -d memory_limit=4G vendor/bin/phpunit --testsuite unit
+vendor/bin/phpunit --testsuite unit
 vendor/bin/php-cs-fixer fix src
 vendor/bin/php-cs-fixer fix tests
 vendor/bin/psalm
@@ -13,8 +13,8 @@ vendor/bin/psalm
 To run integration tests, you need to spin up a database first. To ease this, you can use the docker-compose setup provided
 ```bash
 docker-compose up -d
-docker-compose exec php bash
-phpdbg -qrr -d memory_limit=4G vendor/bin/phpunit --testsuite integration
+docker-compose run php bash
+vendor/bin/phpunit --testsuite integration
 ```
 
 When you need xdebug, you can activate it temporarily inside the running container
