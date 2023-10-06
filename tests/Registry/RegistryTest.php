@@ -52,7 +52,7 @@ class RegistryTest extends TestCase
             ['getDateTimeFieldHelper',DateTimeFieldHelper::class],
             ['getFileFieldHelper',FileFieldHelper::class],
             ['getImageFieldHelper',ImageFieldHelper::class],
-            ['getTagsFieldHelper',NetgenTagsFieldHelper::class],
+            ['getNetgenTagsFieldHelper',NetgenTagsFieldHelper::class],
             ['getNumberFieldHelper',NumberFieldHelper::class],
             ['getRelationFieldHelper',RelationFieldHelper::class],
             ['getRichtextFieldHelper',RichtextFieldHelper::class],

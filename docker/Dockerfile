@@ -50,6 +50,9 @@ rm -rf /tmp/*
 # Database connection (for integration tests)
 RUN docker-php-ext-install pdo pdo_mysql
 
+# For codecov upload inside circleci
+RUN apk add gpg gpg-agent gpgv
+
 COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
 ENV COMPOSER_MEMORY_LIMIT=-1
 
