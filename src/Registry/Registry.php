@@ -16,6 +16,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\NetgenTagsFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\SelectionFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 
@@ -96,6 +97,12 @@ class Registry implements RegistryInterface
     public function getRichtextFieldHelper(): RichtextFieldHelper
     {
         return $this->getFieldHelper(RichtextFieldHelper::class);
+
+    }
+
+    public function getSelectionFieldHelper(): SelectionFieldHelper
+    {
+        return $this->getFieldHelper(SelectionFieldHelper::class);
 
     }
 

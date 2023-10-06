@@ -12,6 +12,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\NetgenTagsFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\SelectionFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 
@@ -33,6 +34,7 @@ interface RegistryInterface
     public function getNumberFieldHelper(): NumberFieldHelper;
     public function getRelationFieldHelper(): RelationFieldHelper;
     public function getRichtextFieldHelper(): RichtextFieldHelper;
+    public function getSelectionFieldHelper(): SelectionFieldHelper;
     public function getTextFieldHelper(): TextFieldHelper;
     public function getUrlFieldHelper(): UrlFieldHelper;
 

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Tests\Registry;
 
-use Elbformat\FieldHelperBundle\Exception\InvalidFieldHelperException;
 use Elbformat\FieldHelperBundle\Exception\UnknownFieldHelperException;
 use Elbformat\FieldHelperBundle\FieldHelper\AuthorFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\BoolFieldHelper;
@@ -15,6 +14,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\NetgenTagsFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\SelectionFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\TextFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\UrlFieldHelper;
 use Elbformat\FieldHelperBundle\Registry\Registry;
@@ -56,13 +56,14 @@ class RegistryTest extends TestCase
             ['getNumberFieldHelper',NumberFieldHelper::class],
             ['getRelationFieldHelper',RelationFieldHelper::class],
             ['getRichtextFieldHelper',RichtextFieldHelper::class],
+            ['getSelectionFieldHelper',SelectionFieldHelper::class],
             ['getTextFieldHelper',TextFieldHelper::class],
             ['getUrlFieldHelper',UrlFieldHelper::class],
 
         ];
     }
 
-    public function testGetFieldHelperUnknown()
+    public function testGetFieldHelperUnknown(): void
     {
         $this->expectException(UnknownFieldHelperException::class);
         $this->expectExceptionMessageMatches('/Unknown FieldHelper: .*TextFieldHelper/');

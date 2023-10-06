@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.1
+Added forgotten field helper for
+* Selection
+
 ## v1.2.0
 * Refactored some tests
 * Improved the docker setup
