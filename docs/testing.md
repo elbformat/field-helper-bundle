@@ -2,7 +2,7 @@
 
 To run the steps from circle ci locally, you can use the same docker image
 ```bash
-docker run -it -v $(pwd)/:/var/www $(docker build -q . -f docker/Dockerfile.php) sh
+docker run -it -v $(pwd)/:/var/www ghcr.io/elbformat/field-helper-bundle/php:8.1 sh
 composer install --dev
 phpdbg -qrr -d memory_limit=4G vendor/bin/phpunit --testsuite unit
 vendor/bin/php-cs-fixer fix src
