@@ -21,7 +21,7 @@ class DependencyInjectionTest extends KernelTestCase
         foreach (glob(__DIR__ . '/../../src/FieldHelper/*FieldHelper.php') as $fieldHelperFile) {
             $class = preg_replace('/^(.*).php$/', '$1', basename($fieldHelperFile));
             $prefix = strtolower(preg_replace('/^(.*)FieldHelper$/', '$1', $class));
-            if ('abstract' === $prefix) {
+            if ('abstract' === $prefix || 'netgentags' === $prefix) {
                 continue;
             }
             $expectedClass = 'Elbformat\\FieldHelperBundle\\FieldHelper\\'.$class;

@@ -25,7 +25,7 @@ class ElbformatFieldHelperExtension extends Extension
         if (class_exists('Netgen\TagsBundle\API\Repository\TagsService')) {
             $fhTags = new Definition(NetgenTagsFieldHelper::class);
             $fhTags->addTag('elbformat_field_helper.field_helper');
-            $fhTags->setArgument('$tagsService','@eztags.api.service.tags');
+            $fhTags->setArgument('$tagsService', '@eztags.api.service.tags');
             $container->setDefinition('elbformat_field_helper.field_helper.netgentags', $fhTags);
         }
 
