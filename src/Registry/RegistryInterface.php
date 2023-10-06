@@ -29,7 +29,7 @@ interface RegistryInterface
     public function getDateTimeFieldHelper(): DateTimeFieldHelper;
     public function getFileFieldHelper(): FileFieldHelper;
     public function getImageFieldHelper(): ImageFieldHelper;
-    public function getTagsFieldHelper(): NetgenTagsFieldHelper;
+    public function getNetgenTagsFieldHelper(): NetgenTagsFieldHelper;
     public function getNumberFieldHelper(): NumberFieldHelper;
     public function getRelationFieldHelper(): RelationFieldHelper;
     public function getRichtextFieldHelper(): RichtextFieldHelper;

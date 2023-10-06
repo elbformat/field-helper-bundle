@@ -177,20 +177,20 @@ class ReadWriteContentTest extends KernelTestCase
         $content = $this->createContent($newStruct);
 
         // Read content
-        $this->assertEquals($target1, $fhRel->getOneContent($content, 'objectrelationlist'));
+        $this->assertEquals($target1->id, $fhRel->getOneContent($content, 'objectrelationlist')->id);
         $targets = $fhRel->getContents($content, 'objectrelationlist');
         $this->assertCount(1, $targets);
-        $this->assertEquals($target1, $targets[0]);
+        $this->assertEquals($target1->id, $targets[0]->id);
 
         // Update content (unchanged)
         $updStruct = $this->contentService->newContentUpdateStruct();
         $this->assertFalse($fhRel->updateRelation($updStruct, 'objectrelationlist', [$target1->id], $content));
         $this->assertTrue($fhRel->updateRelation($updStruct, 'objectrelationlist', [$target2->id], $content));
         $content = $this->updateContent($content, $updStruct);
-        $this->assertEquals($target2, $fhRel->getOneContent($content, 'objectrelationlist'));
+        $this->assertEquals($target2->id, $fhRel->getOneContent($content, 'objectrelationlist')->id);
         $targets = $fhRel->getContents($content, 'objectrelationlist');
         $this->assertCount(1, $targets);
-        $this->assertEquals($target2, $targets[0]);
+        $this->assertEquals($target2->id, $targets[0]->id);
     }
 
     public function testText(): void

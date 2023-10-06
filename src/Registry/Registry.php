@@ -76,7 +76,7 @@ class Registry implements RegistryInterface
         return $this->getFieldHelper(ImageFieldHelper::class);
     }
 
-    public function getTagsFieldHelper(): NetgenTagsFieldHelper
+    public function getNetgenTagsFieldHelper(): NetgenTagsFieldHelper
     {
         return $this->getFieldHelper(NetgenTagsFieldHelper::class);
     }
