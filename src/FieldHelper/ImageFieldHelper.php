@@ -12,7 +12,7 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\FieldType\RelationList\Value as RelationValue;
 use eZ\Publish\Core\MVC\ConfigResolverInterface;
-use eZ\Publish\SPI\Variation\VariationHandler;
+use Ibexa\Contracts\Core\Variation\VariationHandler;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use eZ\Publish\Core\FieldType\Image\Value as ImageValue;
 use eZ\Publish\Core\FieldType\ImageAsset\Value as ImageAssetValue;
