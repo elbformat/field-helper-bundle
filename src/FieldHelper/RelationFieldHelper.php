@@ -11,7 +11,7 @@ use eZ\Publish\API\Repository\Values\Content\Content;
 use eZ\Publish\API\Repository\Values\Content\ContentStruct;
 use eZ\Publish\Core\FieldType\Relation\Value as RelationValue;
 use eZ\Publish\Core\FieldType\RelationList\Value as RelationListValue;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use Psr\Log\LoggerInterface;
 
 /**

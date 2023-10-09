@@ -10,8 +10,8 @@ use eZ\Publish\Core\FieldType\Value;
 use eZ\Publish\Core\Helper\FieldHelper;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
-use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichTextValue;
-use EzSystems\EzPlatformRichText\eZ\RichText\Converter;
+use Ibexa\FieldTypeRichText\FieldType\RichText\Value as RichTextValue;
+use Ibexa\Contracts\FieldTypeRichText\RichText\Converter;
 use PHPUnit\Framework\TestCase;
 
 /**

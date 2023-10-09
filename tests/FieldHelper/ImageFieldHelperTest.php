@@ -15,13 +15,12 @@ use eZ\Publish\API\Repository\Values\Content\Field;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use eZ\Publish\Core\FieldType\Float\Value as FloatValue;
 use eZ\Publish\Core\FieldType\Image\Value;
-use eZ\Publish\Core\MVC\ConfigResolverInterface;
+use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
 use eZ\Publish\Core\Repository\Values\Content\Content;
 use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
 use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
 use eZ\Publish\SPI\Variation\VariationHandler;
-use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value as RichtextValue;
-use EzSystems\PlatformHttpCacheBundle\ResponseTagger\ResponseTagger;
+use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use PHPUnit\Framework\TestCase;
 
 /**
