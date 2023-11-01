@@ -8,6 +8,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\FileFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\ImageFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\MatrixFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NetgenTagsFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
@@ -30,6 +31,7 @@ interface RegistryInterface
     public function getDateTimeFieldHelper(): DateTimeFieldHelper;
     public function getFileFieldHelper(): FileFieldHelper;
     public function getImageFieldHelper(): ImageFieldHelper;
+    public function getMatrixFieldHelper(): MatrixFieldHelper;
     public function getNetgenTagsFieldHelper(): NetgenTagsFieldHelper;
     public function getNumberFieldHelper(): NumberFieldHelper;
     public function getRelationFieldHelper(): RelationFieldHelper;
