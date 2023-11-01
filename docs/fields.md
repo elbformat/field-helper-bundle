@@ -22,7 +22,7 @@ Implemented types are:
 | ISBN         |                      |                      |
 | Keyword      |                      |                      |
 | MapLocation  |                      |                      |
-| Matrix       | ezmatrix             |                      | 
+| Matrix       | ezmatrix             | MatrixFieldHelper    | 
 | Media        |                      |                      |
 | Null         |                      |                      |
 | Page         |                      |                      |

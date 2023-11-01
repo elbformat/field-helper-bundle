@@ -12,6 +12,7 @@ use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\FieldHelperInterface;
 use Elbformat\FieldHelperBundle\FieldHelper\FileFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\ImageFieldHelper;
+use Elbformat\FieldHelperBundle\FieldHelper\MatrixFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NetgenTagsFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\NumberFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
@@ -75,6 +76,11 @@ class Registry implements RegistryInterface
     public function getImageFieldHelper(): ImageFieldHelper
     {
         return $this->getFieldHelper(ImageFieldHelper::class);
+    }
+
+    public function getMatrixFieldHelper(): MatrixFieldHelper
+    {
+        return $this->getFieldHelper(MatrixFieldHelper::class);
     }
 
     public function getNetgenTagsFieldHelper(): NetgenTagsFieldHelper
