@@ -47,11 +47,11 @@ class TestKernel extends Kernel
             new IbexaCoreBundle(),
             new IbexaLegacySearchEngineBundle(),
             new DoctrineSchemaBundle(),
-            new EzSystemsPlatformHttpCacheBundle(),
+            new IbexaHttpCacheBundle(),
             new HautelookTemplatedUriBundle(),
             new ElbformatFieldHelperBundle(),
-            new EzSystemsPlatformInstallerBundle(),
-            new EzPlatformRichTextBundle(),
+            new IbexaRepositoryInstallerBundle(),
+            new IbexaFieldTypeRichTextBundle(),
         ];
     }
 
