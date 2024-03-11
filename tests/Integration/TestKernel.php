@@ -6,7 +6,7 @@ namespace Elbformat\FieldHelperBundle\Tests\Integration;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Elbformat\FieldHelperBundle\ElbformatFieldHelperBundle;
-use Ibexa\Bundle\Core\EzPublishCoreBundle;
+use Ibexa\Bundle\Core\IbexaCoreBundle;
 use Ibexa\Bundle\LegacySearchEngine\IbexaLegacySearchEngineBundle;
 use Ibexa\Bundle\DoctrineSchema\DoctrineSchemaBundle;
 use Ibexa\Bundle\FieldTypeRichText\IbexaFieldTypeRichTextBundle;
@@ -44,9 +44,8 @@ class TestKernel extends Kernel
             new JMSTranslationBundle(),
             new LiipImagineBundle(),
             new FOSHttpCacheBundle(),
-            new EzPublishCoreBundle(),
-            new EzPublishLegacySearchEngineBundle(),
-//            new EzPublishIOBundle(),
+            new IbexaCoreBundle(),
+            new IbexaLegacySearchEngineBundle(),
             new DoctrineSchemaBundle(),
             new EzSystemsPlatformHttpCacheBundle(),
             new HautelookTemplatedUriBundle(),
