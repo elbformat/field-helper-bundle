@@ -31,7 +31,6 @@ class AuthorFieldHelper extends AbstractFieldHelper
         $authors = $this->getValues($content, $fieldName);
 
         $names = [];
-        /** @var Author $author */
         foreach ($authors as $author) {
             $names[] = $author->name;
         }
