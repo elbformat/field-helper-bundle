@@ -6,12 +6,12 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\EmailAddress\Value as MailValue;
-use eZ\Publish\Core\FieldType\TextBlock\Value as TextBlockValue;
-use eZ\Publish\Core\FieldType\TextLine\Value as TextLineValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\EmailAddress\Value as MailValue;
+use Ibexa\Core\FieldType\TextBlock\Value as TextBlockValue;
+use Ibexa\Core\FieldType\TextLine\Value as TextLineValue;
 
 /**
  * Handles ezstring,eztext and ezemail

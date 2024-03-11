@@ -9,12 +9,12 @@ use DateTimeImmutable;
 use DateTimeInterface;
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Date\Value as DateValue;
-use eZ\Publish\Core\FieldType\DateAndTime\Value as DateTimeValue;
-use eZ\Publish\Core\FieldType\Time\Value as TimeValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Date\Value as DateValue;
+use Ibexa\Core\FieldType\DateAndTime\Value as DateTimeValue;
+use Ibexa\Core\FieldType\Time\Value as TimeValue;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>

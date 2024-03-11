@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\Data;
 
 use ArrayAccess;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\API\Repository\Values\Content\VersionInfo;
-use eZ\Publish\Core\FieldType\Image\Value;
-use eZ\Publish\SPI\Variation\VariationHandler;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Core\FieldType\Image\Value;
+use Ibexa\Contracts\Core\Variation\VariationHandler;
 
 /**
  * This proxy makes sure, that image formats will only be generated as soon as they are needed in the template.

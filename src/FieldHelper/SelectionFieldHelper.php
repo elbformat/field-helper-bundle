@@ -6,8 +6,8 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\Core\FieldType\Selection\Value as SelectionValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Core\FieldType\Selection\Value as SelectionValue;
 
 class SelectionFieldHelper extends AbstractFieldHelper
 {

@@ -7,12 +7,12 @@ namespace Elbformat\FieldHelperBundle\Tests\FieldHelper;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
 use Elbformat\FieldHelperBundle\FieldHelper\FileFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\SelectionFieldHelper;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\ContentType\FieldDefinition;
-use eZ\Publish\Core\FieldType\Float\Value as FloatValue;
-use eZ\Publish\Core\FieldType\Selection\Value;
-use eZ\Publish\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\FieldDefinition;
+use Ibexa\Core\FieldType\Float\Value as FloatValue;
+use Ibexa\Core\FieldType\Selection\Value;
+use Ibexa\Core\Repository\Values\Content\Content;
 use PHPUnit\Framework\TestCase;
 
 class SelectionFieldHelperTest extends TestCase

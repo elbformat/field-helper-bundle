@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\Tests\FieldHelper;
 
 use Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Value;
-use eZ\Publish\Core\Helper\FieldHelper;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Value;
+use Ibexa\Core\Helper\FieldHelper;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\FieldTypeRichText\FieldType\RichText\Value as RichTextValue;
 use Ibexa\Contracts\FieldTypeRichText\RichText\Converter;
 use PHPUnit\Framework\TestCase;

@@ -7,11 +7,11 @@ namespace Elbformat\FieldHelperBundle\Tests\FieldHelper;
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
 use Elbformat\FieldHelperBundle\FieldHelper\AuthorFieldHelper;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Author\Author;
-use eZ\Publish\Core\FieldType\Author\Value;
-use eZ\Publish\Core\FieldType\Float\Value as FloatValue;
-use eZ\Publish\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Author\Author;
+use Ibexa\Core\FieldType\Author\Value;
+use Ibexa\Core\FieldType\Float\Value as FloatValue;
+use Ibexa\Core\Repository\Values\Content\Content;
 use PHPUnit\Framework\TestCase;
 
 /**

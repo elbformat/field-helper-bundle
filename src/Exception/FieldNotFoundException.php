@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Exception;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
 
 /**
  * Thrown, when a field by the given name was not found in this content object.

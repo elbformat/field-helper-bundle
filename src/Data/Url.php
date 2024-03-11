@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Data;
 
-use eZ\Publish\Core\FieldType\Url\Value;
+use Ibexa\Core\FieldType\Url\Value;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>

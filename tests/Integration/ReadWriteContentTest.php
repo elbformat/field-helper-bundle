@@ -6,14 +6,14 @@ namespace Elbformat\FieldHelperBundle\Tests\Integration;
 
 use Doctrine\DBAL\Connection;
 use Elbformat\FieldHelperBundle\Registry\RegistryInterface;
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentCreateStruct;
-use eZ\Publish\API\Repository\Values\Content\ContentUpdateStruct;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\ContentType\ContentTypeCreateStruct;
-use EzSystems\DoctrineSchema\API\Builder\SchemaBuilder;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
+use Ibexa\Contracts\DoctrineSchema\Builder\SchemaBuilder;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>

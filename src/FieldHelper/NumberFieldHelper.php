@@ -6,11 +6,11 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Float\Value as FloatValue;
-use eZ\Publish\Core\FieldType\Integer\Value as IntValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Float\Value as FloatValue;
+use Ibexa\Core\FieldType\Integer\Value as IntValue;
 
 /**
  * Helps reading, updating and comparing numeric field types.
