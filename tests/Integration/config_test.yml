@@ -9,7 +9,7 @@ services:
     logger:
         class: Psr\Log\NullLogger
 
-ezpublish:
+ibexa:
     siteaccess:
         list: [default]
         default_siteaccess: default
