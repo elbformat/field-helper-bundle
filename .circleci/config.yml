@@ -58,7 +58,7 @@ jobs:
                           sleep 1
                         done
                         echo Failed waiting for MySQL && exit 1
-            - run: 'vendor/bin/phpunit --testsuite integration'
+            - run: 'php -d memory_limit=512M vendor/bin/phpunit --testsuite integration'
             - store_test_results:
                   path: 'build'
             - codecov/upload:

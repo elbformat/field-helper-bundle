@@ -9,17 +9,17 @@ use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
 use Elbformat\FieldHelperBundle\FieldHelper\ImageFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RelationFieldHelper;
 use Elbformat\FieldHelperBundle\FieldHelper\RichtextFieldHelper;
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
-use eZ\Publish\Core\FieldType\Float\Value as FloatValue;
-use eZ\Publish\Core\FieldType\Image\Value;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\Base\Exceptions\NotFoundException;
+use Ibexa\Core\FieldType\Float\Value as FloatValue;
+use Ibexa\Core\FieldType\Image\Value;
 use Ibexa\Contracts\Core\SiteAccess\ConfigResolverInterface;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\VersionInfo;
-use eZ\Publish\Core\Repository\Values\ContentType\ContentType;
-use eZ\Publish\SPI\Variation\VariationHandler;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\VersionInfo;
+use Ibexa\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Variation\VariationHandler;
 use Ibexa\Contracts\HttpCache\ResponseTagger\ResponseTagger;
 use PHPUnit\Framework\TestCase;
 
@@ -66,7 +66,7 @@ class ImageFieldHelperTest extends TestCase
     public function testGetImageFromRelationEmpty(): void
     {
         $this->fhRel->method('getOneContent')->willReturn(null);
-        $field = new Field(['value' => new \eZ\Publish\Core\FieldType\RelationList\Value(['destinationContentIds' => 1])]);
+        $field = new Field(['value' => new \Ibexa\Core\FieldType\RelationList\Value(['destinationContentIds' => 1])]);
         $content = $this->createMock(Content::class);
         $content->method('getField')->with('image_field')->willReturn($field);
 
@@ -75,7 +75,7 @@ class ImageFieldHelperTest extends TestCase
     public function testGetImageFromRelationNotFound(): void
     {
         $this->fhRel->method('getOneContent')->willThrowException(new NotFoundException('content', 1));
-        $field = new Field(['value' => new \eZ\Publish\Core\FieldType\RelationList\Value(['destinationContentIds' => 1])]);
+        $field = new Field(['value' => new \Ibexa\Core\FieldType\RelationList\Value(['destinationContentIds' => 1])]);
         $content = $this->createMock(Content::class);
         $content->method('getField')->with('image_field')->willReturn($field);
 
@@ -92,7 +92,7 @@ class ImageFieldHelperTest extends TestCase
 
     public function testGetImageFromImageAssetEmpty(): void
     {
-        $field = new Field(['value' => new \eZ\Publish\Core\FieldType\ImageAsset\Value()]);
+        $field = new Field(['value' => new \Ibexa\Core\FieldType\ImageAsset\Value()]);
         $content = $this->createMock(Content::class);
         $content->method('getField')->with('image_field')->willReturn($field);
         $this->assertNull($this->fh->getImage($content, 'image_field'));
@@ -134,7 +134,7 @@ class ImageFieldHelperTest extends TestCase
     {
         $image = $this->createContentFromImage($alt, $caption);
         $this->fhRel->method('getOneContent')->willReturn($image);
-        $field = new Field(['value' => new \eZ\Publish\Core\FieldType\RelationList\Value(['destinationContentIds' => 1])]);
+        $field = new Field(['value' => new \Ibexa\Core\FieldType\RelationList\Value(['destinationContentIds' => 1])]);
         $content = $this->createMock(Content::class);
         $content->method('getField')->with('image_field')->willReturn($field);
 
@@ -144,7 +144,7 @@ class ImageFieldHelperTest extends TestCase
     protected function createContentFromAsset(?string $alt = null, ?string $caption = null): Content
     {
         $image = $this->createContentFromImage($alt, $caption);
-        $field = new Field(['value' => new \eZ\Publish\Core\FieldType\ImageAsset\Value(1, $alt)]);
+        $field = new Field(['value' => new \Ibexa\Core\FieldType\ImageAsset\Value(1, $alt)]);
         $content = $this->createMock(Content::class);
         $content->method('getField')->with('image_field')->willReturn($field);
         $contentSvc = $this->getMockBuilder(ContentService::class)->getMock();

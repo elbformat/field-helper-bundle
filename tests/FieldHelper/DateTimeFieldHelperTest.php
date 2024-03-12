@@ -7,15 +7,15 @@ namespace Elbformat\FieldHelperBundle\Tests\FieldHelper;
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
 use Elbformat\FieldHelperBundle\FieldHelper\DateTimeFieldHelper;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Date\Value as DateValue;
-use eZ\Publish\Core\FieldType\DateAndTime\Value as DateTimeValue;
-use eZ\Publish\Core\FieldType\Float\Value as FloatValue;
-use eZ\Publish\Core\FieldType\Time\Value as TimeValue;
-use eZ\Publish\Core\FieldType\Value;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use eZ\Publish\Core\Repository\Values\Content\ContentCreateStruct;
-use eZ\Publish\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Date\Value as DateValue;
+use Ibexa\Core\FieldType\DateAndTime\Value as DateTimeValue;
+use Ibexa\Core\FieldType\Float\Value as FloatValue;
+use Ibexa\Core\FieldType\Time\Value as TimeValue;
+use Ibexa\Core\FieldType\Value;
+use Ibexa\Core\Repository\Values\Content\Content;
+use Ibexa\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Core\Repository\Values\Content\ContentUpdateStruct;
 use PHPUnit\Framework\TestCase;
 
 /**
