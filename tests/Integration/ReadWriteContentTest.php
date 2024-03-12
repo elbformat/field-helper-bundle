@@ -13,7 +13,7 @@ use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
 use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
 use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
-use Ibexa\Contracts\DoctrineSchema\Builder\SchemaBuilder;
+use Ibexa\DoctrineSchema\Builder\SchemaBuilder;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
@@ -28,7 +28,7 @@ class ReadWriteContentTest extends KernelTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->repo = $this->containerInstance->get('ezpublish.api.repository');
+        $this->repo = $this->containerInstance->get('ibexa.api.repository');
         $this->fhReg = $this->containerInstance->get(RegistryInterface::class);
         $this->contentService = $this->repo->getContentService();
         // Create database structure and content-type only once
@@ -283,7 +283,7 @@ class ReadWriteContentTest extends KernelTestCase
     protected function createContentType(): ContentType
     {
         // Create content-type with one of each kind
-        $repo = $this->containerInstance->get('ezpublish.api.repository');
+        $repo = $this->containerInstance->get('ibexa.api.repository');
         $ctStruct = $repo->getContentTypeService()->newContentTypeCreateStruct('test');
         $ctStruct->mainLanguageCode = 'eng-GB';
         $ctStruct->names = ['eng-GB' => 'Test'];
@@ -359,7 +359,7 @@ class ReadWriteContentTest extends KernelTestCase
         }
 
         // Fill up with initial data
-        $queries = array_filter(preg_split('(;\\s*$)m', file_get_contents(__DIR__ . '/../../vendor/ezsystems/ezplatform-kernel/data/mysql/cleandata.sql')));
+        $queries = array_filter(preg_split('(;\\s*$)m', file_get_contents(__DIR__ . '/../../vendor/ibexa/core/data/mysql/cleandata.sql')));
         foreach ($queries as $query) {
             $db->exec(str_replace('\"', '"', $query));
         }

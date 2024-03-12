@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\Tests\Integration;
 
 use Elbformat\FieldHelperBundle\Registry\RegistryInterface;
-use Ibexa\Contracts\DoctrineSchema\Builder\SchemaBuilder;
+use Ibexa\DoctrineSchema\Builder\SchemaBuilder;
 
 /**
  * This services is needed for integration test, as the other unused services are removed otherwise.
