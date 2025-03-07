@@ -13,7 +13,7 @@ vendor/bin/psalm
 To run integration tests, you need to spin up a database first. To ease this, you can use the docker-compose setup provided
 ```bash
 docker-compose up -d
-docker-compose run php sh
+docker-compose exec php sh
 vendor/bin/phpunit --testsuite integration
 ```
 

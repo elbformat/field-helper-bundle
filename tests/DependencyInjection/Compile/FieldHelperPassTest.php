@@ -25,7 +25,7 @@ class FieldHelperPassTest extends TestCase
             if (BoolFieldHelper::class !== array_keys($arg)[0]) {
                 throw new \Exception('Invalid helper name: '.array_keys($arg)[0]);
             }
-            if (! array_values($arg)[0] instanceof Reference) {
+            if (!array_values($arg)[0] instanceof Reference) {
                 throw new \Exception('Helper not a reference');
             }
             return ('elbformat_field_helper.field_helper.test' === (string) array_values($arg)[0]);

@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.2
+Added field helper for
+* Matrix
+
 ## v1.2.1
 Added forgotten field helper for
 * Selection
