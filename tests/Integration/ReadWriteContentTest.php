@@ -6,14 +6,14 @@ namespace Elbformat\FieldHelperBundle\Tests\Integration;
 
 use Doctrine\DBAL\Connection;
 use Elbformat\FieldHelperBundle\Registry\RegistryInterface;
-use eZ\Publish\API\Repository\ContentService;
-use eZ\Publish\API\Repository\Repository;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentCreateStruct;
-use eZ\Publish\API\Repository\Values\Content\ContentUpdateStruct;
-use eZ\Publish\API\Repository\Values\ContentType\ContentType;
-use eZ\Publish\API\Repository\Values\ContentType\ContentTypeCreateStruct;
-use EzSystems\DoctrineSchema\API\Builder\SchemaBuilder;
+use Ibexa\Contracts\Core\Repository\ContentService;
+use Ibexa\Contracts\Core\Repository\Repository;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentCreateStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentUpdateStruct;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentType;
+use Ibexa\Contracts\Core\Repository\Values\ContentType\ContentTypeCreateStruct;
+use Ibexa\DoctrineSchema\Builder\SchemaBuilder;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
@@ -28,7 +28,7 @@ class ReadWriteContentTest extends KernelTestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->repo = $this->containerInstance->get('ezpublish.api.repository');
+        $this->repo = $this->containerInstance->get('ibexa.api.repository');
         $this->fhReg = $this->containerInstance->get(RegistryInterface::class);
         $this->contentService = $this->repo->getContentService();
         // Create database structure and content-type only once
@@ -283,7 +283,7 @@ class ReadWriteContentTest extends KernelTestCase
     protected function createContentType(): ContentType
     {
         // Create content-type with one of each kind
-        $repo = $this->containerInstance->get('ezpublish.api.repository');
+        $repo = $this->containerInstance->get('ibexa.api.repository');
         $ctStruct = $repo->getContentTypeService()->newContentTypeCreateStruct('test');
         $ctStruct->mainLanguageCode = 'eng-GB';
         $ctStruct->names = ['eng-GB' => 'Test'];
@@ -359,7 +359,7 @@ class ReadWriteContentTest extends KernelTestCase
         }
 
         // Fill up with initial data
-        $queries = array_filter(preg_split('(;\\s*$)m', file_get_contents(__DIR__ . '/../../vendor/ezsystems/ezplatform-kernel/data/mysql/cleandata.sql')));
+        $queries = array_filter(preg_split('(;\\s*$)m', file_get_contents(__DIR__ . '/../../vendor/ibexa/core/data/mysql/cleandata.sql')));
         foreach ($queries as $query) {
             $db->exec(str_replace('\"', '"', $query));
         }

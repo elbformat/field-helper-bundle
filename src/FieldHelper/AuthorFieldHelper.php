@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\Core\FieldType\Author\Author;
-use eZ\Publish\Core\FieldType\Author\AuthorCollection;
-use eZ\Publish\Core\FieldType\Author\Value as AuthorValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Core\FieldType\Author\Author;
+use Ibexa\Core\FieldType\Author\AuthorCollection;
+use Ibexa\Core\FieldType\Author\Value as AuthorValue;
 
 class AuthorFieldHelper extends AbstractFieldHelper
 {
@@ -31,7 +31,6 @@ class AuthorFieldHelper extends AbstractFieldHelper
         $authors = $this->getValues($content, $fieldName);
 
         $names = [];
-        /** @var Author $author */
         foreach ($authors as $author) {
             $names[] = $author->name;
         }

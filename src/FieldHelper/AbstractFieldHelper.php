@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\FieldHelper;
 
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 
 /**

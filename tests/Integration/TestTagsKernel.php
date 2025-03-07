@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Elbformat\FieldHelperBundle\Tests\Integration;
 
-use EzSystems\EzPlatformAdminUiBundle\EzPlatformAdminUiBundle;
-use EzSystems\EzPlatformRestBundle\EzPlatformRestBundle;
+use Ibexa\Bundle\AdminUi\IbexaAdminUiBundle;
+use Ibexa\Bundle\Rest\IbexaRestBundle;
 use Lolautruche\EzCoreExtraBundle\EzCoreExtraBundle;
 use Netgen\TagsBundle\NetgenTagsBundle;
 

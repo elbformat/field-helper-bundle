@@ -7,10 +7,10 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
 use Elbformat\FieldHelperBundle\Data\Url;
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\FieldType\Url\Value as UrlValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\FieldType\Url\Value as UrlValue;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>

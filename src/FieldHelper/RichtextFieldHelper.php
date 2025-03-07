@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\Helper\FieldHelper;
-use EzSystems\EzPlatformRichText\eZ\FieldType\RichText\Value;
-use EzSystems\EzPlatformRichText\eZ\RichText\Converter as RichtextConverter;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Core\Helper\FieldHelper;
+use Ibexa\FieldTypeRichText\FieldType\RichText\Value;
+use Ibexa\Contracts\FieldTypeRichText\RichText\Converter as RichtextConverter;
 
 /**
  * Helps reading, updating and comparing richtext field types.
