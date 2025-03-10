@@ -47,7 +47,7 @@ class NetgenTagsFieldHelperTest extends TestCase
     protected function createContentFromTags(array $tags): Content
     {
         $tagObjs = [];
-        foreach($tags as $tag) {
+        foreach ($tags as $tag) {
             $tagObjs[] = new Tag(['keywords' => ['ger-DE' => $tag],'mainLanguageCode' => 'ger-DE']);
         }
         $field = new Field(['value' => new Value($tagObjs)]);

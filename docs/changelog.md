@@ -1,5 +1,12 @@
 # Changelog
 
+## v2.0.1
+Minimum version is Ibexa 4.6.
+* Added Matrix field Helper
+
+## v2.0.0
+Ibexa 4 support
+
 ## v1.2.2
 Added field helper for
 * Matrix
