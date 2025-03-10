@@ -2,7 +2,7 @@
 
 To run the steps from circle ci locally, you can use the same docker image
 ```bash
-docker-compose run php sh
+docker compose run php sh
 composer install --dev
 vendor/bin/phpunit --testsuite unit
 vendor/bin/php-cs-fixer fix src
@@ -12,8 +12,8 @@ vendor/bin/psalm
 
 To run integration tests, you need to spin up a database first. To ease this, you can use the docker-compose setup provided
 ```bash
-docker-compose up -d
-docker-compose exec php sh
+docker compose up -d
+docker compose run php sh
 vendor/bin/phpunit --testsuite integration
 ```
 

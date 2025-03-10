@@ -14,7 +14,7 @@ use Ibexa\Contracts\FieldTypeRichText\RichText\Converter as RichtextConverter;
 
 /**
  * Helps reading, updating and comparing richtext field types.
- * https://doc.ezplatform.com/en/latest/api/field_type_reference.
+ * https://doc.ibexa.co/en/latest/content_management/field_types/field_type_reference/field_type_reference/
  *
  * @author Ronny Gericke <ronny.gericke@elbformat.de>
  */

@@ -116,7 +116,7 @@ class RelationFieldHelper extends AbstractFieldHelper
             foreach ($stringIds as $stringId) {
                 $ids[] = (int) $stringId;
             }
-        } elseif($field->value instanceof RelationValue) {
+        } elseif ($field->value instanceof RelationValue) {
             $ids = $field->value->destinationContentId ? [(int)$field->value->destinationContentId] : [];
         } else {
             /** @psalm-suppress DeprecatedClass */

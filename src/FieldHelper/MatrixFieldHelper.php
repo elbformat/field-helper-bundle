@@ -6,9 +6,9 @@ namespace Elbformat\FieldHelperBundle\FieldHelper;
 
 use Elbformat\FieldHelperBundle\Exception\FieldNotFoundException;
 use Elbformat\FieldHelperBundle\Exception\InvalidFieldTypeException;
-use eZ\Publish\API\Repository\Values\Content\Content;
-use eZ\Publish\API\Repository\Values\Content\ContentStruct;
-use EzSystems\EzPlatformMatrixFieldtype\FieldType\Value;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\Contracts\Core\Repository\Values\Content\ContentStruct;
+use Ibexa\FieldTypeMatrix\FieldType\Value;
 
 /**
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
@@ -31,7 +31,6 @@ class MatrixFieldHelper extends AbstractFieldHelper
     {
         $rows = $this->getValue($content, $fieldName)->getRows();
         $result = [];
-        /** @var Value\Row $row */
         foreach ($rows as $row) {
             /** @var string[] $cells */
             $cells = $row->getCells();
@@ -89,7 +88,6 @@ class MatrixFieldHelper extends AbstractFieldHelper
         }
 
         $result = [];
-        /** @var Value\Row $row */
         foreach ($rows as $row) {
             /** @var string[] $cells */
             $cells = $row->getCells();
@@ -112,7 +110,6 @@ class MatrixFieldHelper extends AbstractFieldHelper
         }
         $rows = $this->getValue($content, $fieldName)->getRows();
         $result = [];
-        /** @var Value\Row $row */
         foreach ($rows as $row) {
             $cells = $row->getCells();
             $result[] = (string) $cells[$columnName];

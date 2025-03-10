@@ -14,7 +14,7 @@ use Ibexa\Core\FieldType\Integer\Value as IntValue;
 
 /**
  * Helps reading, updating and comparing numeric field types.
- * https://doc.ezplatform.com/en/latest/api/field_type_reference.
+ * https://doc.ibexa.co/en/latest/content_management/field_types/field_type_reference/field_type_reference/
  *
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */
