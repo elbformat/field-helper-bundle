@@ -37,7 +37,7 @@ jobs:
                   DATABASE_NAME: "ezp"
                   DATABASE_USER: "ezp"
                   DATABASE_PASSWORD: "ezp"
-            - image: 'mariadb:10.3'
+            - image: 'mariadb:11.8'
               environment:
                   MYSQL_ROOT_PASSWORD: "root"
                   MYSQL_DATABASE: "ezp"
