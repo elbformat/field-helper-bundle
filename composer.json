@@ -38,7 +38,7 @@
     "friendsofphp/php-cs-fixer": "^3.3",
     "phpunit/phpunit": "^9.5",
     "vimeo/psalm": "^4.13",
-    "netgen/tagsbundle": "^4.0"
+    "netgen/tagsbundle": "^5.0"
   },
   "config": {
     "allow-plugins": {
