@@ -2,7 +2,7 @@
 # Until then, do it manually
 # docker build -t ghcr.io/elbformat/field-helper-bundle/php:8.1 . -f docker/Dockerfile.php
 # docker push
-FROM php:8.1-alpine
+FROM php:8.5-alpine
 LABEL org.opencontainers.image.source="https://github.com/elbformat/field-helper-bundle"
 
 # For code coverage
