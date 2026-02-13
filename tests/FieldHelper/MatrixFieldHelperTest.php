@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Elbformat\FieldHelperBundle\Tests\FieldHelper;
 
 use Elbformat\FieldHelperBundle\FieldHelper\MatrixFieldHelper;
-use eZ\Publish\API\Repository\Values\Content\Field;
-use eZ\Publish\Core\Repository\Values\Content\Content;
-use EzSystems\EzPlatformMatrixFieldtype\FieldType\Value as MatrixValue;
+use Ibexa\Contracts\Core\Repository\Values\Content\Field;
+use Ibexa\Contracts\Core\Repository\Values\Content\Content;
+use Ibexa\FieldTypeMatrix\FieldType\Value as MatrixValue;
 use PHPUnit\Framework\TestCase;
 
 /**
