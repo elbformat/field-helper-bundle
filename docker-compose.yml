@@ -1,7 +1,6 @@
-version: '2.1'
 services:
     php:
-        image: ghcr.io/elbformat/field-helper-bundle/php:8.1
+        image: ghcr.io/elbformat/field-helper-bundle/php:8.3
         environment:
             SYMFONY_ENV: "prod"
             TZ: "Europe/Berlin"
