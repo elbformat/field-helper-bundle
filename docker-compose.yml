@@ -1,6 +1,8 @@
 services:
     php:
         image: ghcr.io/elbformat/field-helper-bundle/php:8.3
+        platform: linux/amd64 # for running on m3
+        tty: true # for running on m3
         environment:
             SYMFONY_ENV: "prod"
             TZ: "Europe/Berlin"
@@ -14,7 +16,8 @@ services:
             - ./:/var/www
 
     mysql:
-        image: mariadb:10.3
+        image: mariadb:10.5.8
+        platform: linux/amd64 # for running on m3
         environment:
             MYSQL_ROOT_PASSWORD: "root"
             MYSQL_DATABASE: "ezp"
