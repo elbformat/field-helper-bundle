@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.1.0
+Ibexa 5.0 compatibility. Renamed db table names from ez to ibexa.
+
 ## v2.0.1
 Minimum version is Ibexa 4.6.
 * Added Matrix field Helper

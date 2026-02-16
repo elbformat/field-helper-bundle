@@ -14,7 +14,7 @@ use Ibexa\Core\FieldType\TextBlock\Value as TextBlockValue;
 use Ibexa\Core\FieldType\TextLine\Value as TextLineValue;
 
 /**
- * Handles ezstring,eztext and ezemail
+ * Handles ezstring,eztext and ezemail / ibexa_string, ibexa_text, ibexa_email
  *
  * @author Hannes Giesenow <hannes.giesenow@elbformat.de>
  */

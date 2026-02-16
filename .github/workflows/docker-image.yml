@@ -7,6 +7,7 @@ on:
 #    branches:
 #      - new-helpers
 #      - main
+#      - allow-ibexa-5-0
 
 env:
   REGISTRY: ghcr.io
@@ -42,5 +43,5 @@ jobs:
           context: docker
           push: true
           #tags: ${{ steps.meta.outputs.tags }}
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.1
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:8.3
           labels: ${{ steps.meta.outputs.labels }}

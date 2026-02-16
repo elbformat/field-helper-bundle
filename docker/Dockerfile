@@ -2,7 +2,7 @@
 # Until then, do it manually
 # docker build -t ghcr.io/elbformat/field-helper-bundle/php:8.1 . -f docker/Dockerfile.php
 # docker push
-FROM php:8.1-alpine
+FROM php:8.3-alpine
 LABEL org.opencontainers.image.source="https://github.com/elbformat/field-helper-bundle"
 
 # For code coverage
@@ -14,7 +14,7 @@ docker-php-ext-enable pcov
 
 # For debugging
 RUN apk add --no-cache --virtual .build-deps autoconf g++ make linux-headers &&\
-pecl install xdebug-3.2.0 && \
+pecl install xdebug-3.4.0 && \
 apk del .build-deps && \
 rm -rf /tmp/*
 
@@ -34,7 +34,7 @@ rm -rf /tmp/*
 
 # xdebug
 RUN apk add --no-cache --virtual .build-deps autoconf g++ make linux-headers && \
-pecl install xdebug-3.2.1 && \
+pecl install xdebug-3.4.1 && \
 docker-php-ext-enable xdebug && \
 apk del .build-deps && \
 rm -rf /tmp/*
