@@ -3,11 +3,11 @@ name: Create and publish a Docker image
 on:
   schedule:
     - cron: '0 9 1 * *'
-  push:
-    branches:
+#  push:
+#    branches:
 #      - new-helpers
 #      - main
-      - allow-ibexa-5-0
+#      - allow-ibexa-5-0
 
 env:
   REGISTRY: ghcr.io
